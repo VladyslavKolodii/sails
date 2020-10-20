@@ -1,0 +1,154 @@
+PODS:
+  - Firebase/Core (6.34.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 6.9.0)
+  - Firebase/CoreOnly (6.34.0):
+    - FirebaseCore (= 6.10.4)
+  - Firebase/RemoteConfig (6.34.0):
+    - Firebase/CoreOnly
+    - FirebaseRemoteConfig (~> 4.9.1)
+  - firebase_core (0.0.1):
+    - Firebase/Core
+    - Flutter
+  - firebase_remote_config (0.0.1):
+    - Firebase/RemoteConfig
+    - Flutter
+  - FirebaseABTesting (4.2.0):
+    - FirebaseCore (~> 6.10)
+  - FirebaseAnalytics (6.9.0):
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstallations (~> 1.7)
+    - GoogleAppMeasurement (= 6.9.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
+    - GoogleUtilities/MethodSwizzler (~> 6.7)
+    - GoogleUtilities/Network (~> 6.7)
+    - "GoogleUtilities/NSData+zlib (~> 6.7)"
+    - nanopb (~> 1.30906.0)
+  - FirebaseCore (6.10.4):
+    - FirebaseCoreDiagnostics (~> 1.6)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Logger (~> 6.7)
+  - FirebaseCoreDiagnostics (1.7.0):
+    - GoogleDataTransport (~> 7.4)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Logger (~> 6.7)
+    - nanopb (~> 1.30906.0)
+  - FirebaseInstallations (1.7.0):
+    - FirebaseCore (~> 6.10)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/UserDefaults (~> 6.7)
+    - PromisesObjC (~> 1.2)
+  - FirebaseRemoteConfig (4.9.1):
+    - FirebaseABTesting (~> 4.2)
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstallations (~> 1.6)
+    - GoogleUtilities/Environment (~> 6.7)
+    - "GoogleUtilities/NSData+zlib (~> 6.7)"
+  - Flutter (1.0.0)
+  - "geolocator (6.0.0+4)":
+    - Flutter
+  - GoogleAppMeasurement (6.9.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
+    - GoogleUtilities/MethodSwizzler (~> 6.7)
+    - GoogleUtilities/Network (~> 6.7)
+    - "GoogleUtilities/NSData+zlib (~> 6.7)"
+    - nanopb (~> 1.30906.0)
+  - GoogleDataTransport (7.5.1):
+    - nanopb (~> 1.30906.0)
+  - GoogleUtilities/AppDelegateSwizzler (6.7.2):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.7.2):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (6.7.2):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.7.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (6.7.2):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.7.2)"
+  - GoogleUtilities/Reachability (6.7.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.7.2):
+    - GoogleUtilities/Logger
+  - Mapbox-iOS-SDK (5.6.1):
+    - MapboxMobileEvents (= 0.10.2)
+  - mapbox_gl (0.0.1):
+    - Flutter
+    - Mapbox-iOS-SDK (~> 5.6.0)
+    - MapboxAnnotationExtension (~> 0.0.1-beta.1)
+  - MapboxAnnotationExtension (0.0.1-beta.1):
+    - Mapbox-iOS-SDK (~> 5.2)
+  - MapboxMobileEvents (0.10.2)
+  - nanopb (1.30906.0):
+    - nanopb/decode (= 1.30906.0)
+    - nanopb/encode (= 1.30906.0)
+  - nanopb/decode (1.30906.0)
+  - nanopb/encode (1.30906.0)
+  - PromisesObjC (1.2.11)
+
+DEPENDENCIES:
+  - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
+  - firebase_remote_config (from `.symlinks/plugins/firebase_remote_config/ios`)
+  - Flutter (from `Flutter`)
+  - geolocator (from `.symlinks/plugins/geolocator/ios`)
+  - mapbox_gl (from `.symlinks/plugins/mapbox_gl/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Firebase
+    - FirebaseABTesting
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseInstallations
+    - FirebaseRemoteConfig
+    - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleUtilities
+    - Mapbox-iOS-SDK
+    - MapboxAnnotationExtension
+    - MapboxMobileEvents
+    - nanopb
+    - PromisesObjC
+
+EXTERNAL SOURCES:
+  firebase_core:
+    :path: ".symlinks/plugins/firebase_core/ios"
+  firebase_remote_config:
+    :path: ".symlinks/plugins/firebase_remote_config/ios"
+  Flutter:
+    :path: Flutter
+  geolocator:
+    :path: ".symlinks/plugins/geolocator/ios"
+  mapbox_gl:
+    :path: ".symlinks/plugins/mapbox_gl/ios"
+
+SPEC CHECKSUMS:
+  Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
+  firebase_core: 335c02abd48672b7c83c683df833d0488a72e73e
+  firebase_remote_config: 7297b33f88ca82beacff00cc60cc1230bd9fc4c5
+  FirebaseABTesting: 8a9d8df3acc2b43f4a22014ddf9f601bca6af699
+  FirebaseAnalytics: 3bb096873ee0d7fa4b6c70f5e9166b6da413cc7f
+  FirebaseCore: d3a978a3cfa3240bf7e4ba7d137fdf5b22b628ec
+  FirebaseCoreDiagnostics: 770ac5958e1372ce67959ae4b4f31d8e127c3ac1
+  FirebaseInstallations: 466c7b4d1f58fe16707693091da253726a731ed2
+  FirebaseRemoteConfig: 35a729305f254fb15a2e541d4b36f3a379da7fdc
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  geolocator: 1ae40084cc6c1586ce5ad12cfc3fd38c64d05f2f
+  GoogleAppMeasurement: a6a3a066369828db64eda428cb2856dc1cdc7c4e
+  GoogleDataTransport: f56af7caa4ed338dc8e138a5d7c5973e66440833
+  GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
+  Mapbox-iOS-SDK: b31bd62a5dd5b7e688eab787acd3d093a122f4d6
+  mapbox_gl: 48d261b93d7dfc2367c2f93b493ea8f43df5ba96
+  MapboxAnnotationExtension: d66de5561562c9d940153c0135725e671407b781
+  MapboxMobileEvents: 2bc0ca2eedb627b73cf403258dce2b2fa98074a6
+  nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
+  PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
+
+PODFILE CHECKSUM: fe0e1ee7f3d1f7d00b11b474b62dd62134535aea
+
+COCOAPODS: 1.9.3
