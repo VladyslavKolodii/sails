@@ -23,7 +23,7 @@ class MapPage extends StatelessWidget {
           future: getCurrentPosition(),
           builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
             if (snapshot.hasError) {
-              print('foobar');
+              print('Error fetching map keys');
             }
             if (!snapshot.hasData) {
               // while data is loading:
