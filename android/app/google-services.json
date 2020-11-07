@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "803104661552",
+    "firebase_url": "https://sailmate-beta.firebaseio.com",
+    "project_id": "sailmate-beta",
+    "storage_bucket": "sailmate-beta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803104661552:android:8f76d6b4d1b90fdb",
+        "android_client_info": {
+          "package_name": "fi.nautics.sailmate.beta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803104661552-blnrhgrmo8okq7hc3rbdk4c4qn467rev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDkNB1pefLZ3WrGYxsMwm14wSYoIY5ETg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803104661552-bvdd1m60k8dsbrn6cfsl38vrnhqq16v0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "803104661552-0fsmengpp14796h17sr77sh879pls1bm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "fi.nautics.sailmate.dev"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
