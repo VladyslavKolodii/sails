@@ -14,10 +14,14 @@ dependencies:
   geolocator: ^6.1.4
   bloc: ^6.0.0
   flutter_bloc: ^6.0.0
+  equatable: ^1.0.0
   firebase_core: 0.4.5
   firebase_analytics: ^5.0.2
+  flutter_hooks: 0.14.1
   config_repository:
     path: packages/config_repository
+  point_of_interest_repository:
+    path: packages/point_of_interest_repository
 
 dev_dependencies:
   flutter_test:

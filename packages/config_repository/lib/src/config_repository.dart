@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 
-import '../config_repository.dart';
 import 'models/models.dart';
 
 class ConfigRepository {

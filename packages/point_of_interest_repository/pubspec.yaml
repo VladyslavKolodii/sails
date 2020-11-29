@@ -1,0 +1,17 @@
+name: point_of_interest_repository
+description: Dart package which manages the point of interest domain.
+version: 1.0.0
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  meta: ^1.1.8
+  retrofit: any
+  logger: any
+  json_annotation: any
+
+dev_dependencies:
+  retrofit_generator: any
+  build_runner: any
+  json_serializable: any
