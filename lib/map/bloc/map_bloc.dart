@@ -113,6 +113,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         _mapController = controller;
         add(MapRenderRequested());
       },
+      onStyleLoadedCallback: () {},
       initialCameraPosition: CameraPosition(target: LatLng(60, 20), zoom: 10),
       myLocationEnabled: true,
       myLocationTrackingMode: MyLocationTrackingMode.Tracking,
