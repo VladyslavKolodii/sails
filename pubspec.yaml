@@ -18,6 +18,8 @@ dependencies:
   firebase_core: 0.4.5
   firebase_analytics: ^5.0.2
   flutter_hooks: 0.14.1
+  colorful_safe_area: ^0.2.1
+  fontisto_flutter: ^3.0.4
   config_repository:
     path: packages/config_repository
   point_of_interest_repository:

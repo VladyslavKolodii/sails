@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:meta/meta.dart';
@@ -42,6 +43,17 @@ class CameraUpdateRequested extends MapEvent {
   List<Object> get props => [location, zoom];
 }
 
+class TrackingModeUpdateRequested extends MapEvent {
+  final MyLocationTrackingMode mode;
+
+  const TrackingModeUpdateRequested({
+    @required this.mode,
+  }) : assert(mode != null);
+
+  @override
+  List<Object> get props => [mode];
+}
+
 class PointOfInterestsRequested extends MapEvent {
   const PointOfInterestsRequested();
 
@@ -81,6 +93,9 @@ class MapReady extends MapVisible {
 class CameraUpdateInProgress extends MapVisible {}
 class CameraUpdated extends MapVisible {}
 
+class TrackingModeUpdateInProgress extends MapVisible {}
+class TrackingModeUpdated extends MapVisible {}
+
 class PointOfInterestsLoadInProgress extends MapVisible {}
 
 class PointOfInterestsLoadSuccess extends MapVisible {
@@ -109,10 +124,15 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     return MapboxMap(
       accessToken: accessToken,
       styleString: styleString,
+      onMapClick: (point, location) {
+        _mapController.updateMyLocationTrackingMode(MyLocationTrackingMode.None);
+      },
       onMapCreated: (controller) {
         _mapController = controller;
         add(MapRenderRequested());
       },
+      // TODO: not the prettiest way to hide attribution
+      attributionButtonMargins: Point(0, 10000),
       onStyleLoadedCallback: () {},
       initialCameraPosition: CameraPosition(target: LatLng(60, 20), zoom: 10),
       myLocationEnabled: true,
@@ -147,6 +167,11 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       await Future.delayed(Duration(seconds: 1));
       yield MapRendered();
     }
+    if (event is TrackingModeUpdateRequested) {
+      yield TrackingModeUpdateInProgress();
+      await _mapController.updateMyLocationTrackingMode(event.mode);
+      yield TrackingModeUpdated();
+    }
   }
 
   Stream<MapState> _mapPointOfInterestsRequestedToState(
@@ -169,7 +194,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
   ) async* {
     yield CameraUpdateInProgress();
     try {
-      await _mapController.animateCamera(
+      await _mapController.moveCamera(
         CameraUpdate.newCameraPosition(
           CameraPosition(
             target: event.location,

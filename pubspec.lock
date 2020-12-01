@@ -64,6 +64,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0-nullsafety.3"
+  colorful_safe_area:
+    dependency: "direct main"
+    description:
+      name: colorful_safe_area
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   config_repository:
     dependency: "direct main"
     description:
@@ -198,6 +205,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  fontisto_flutter:
+    dependency: "direct main"
+    description:
+      name: fontisto_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.2"
   geolocator:
     dependency: "direct main"
     description:

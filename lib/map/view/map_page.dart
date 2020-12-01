@@ -1,11 +1,11 @@
 import 'package:HybridSailmate/map/bloc/map_bloc.dart';
+import 'package:HybridSailmate/widgets/speed_and_heading_info_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fontisto_flutter/fontisto_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
-import 'package:dio/dio.dart';
-import 'package:point_of_interest_repository/point_of_interest_repository.dart';
 
 class MapPage extends HookWidget {
   const MapPage({
@@ -25,10 +25,9 @@ class MapPage extends HookWidget {
     // ignore: close_sinks
     final MapBloc bloc = BlocProvider.of<MapBloc>(context);
 
-    return new Scaffold(
-        appBar: AppBar(title: const Text('Sailmate')),
-        body: FutureBuilder<Position>(
-          future: getCurrentPosition(),
+    return Container(
+        child: FutureBuilder<Position>(
+          future: Geolocator.getCurrentPosition(),
           builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
             if (snapshot.hasError) {
               print('Error fetching current location');
@@ -54,7 +53,23 @@ class MapPage extends HookWidget {
                   }
 
                   if (bloc.getMap() != null && state is MapVisible) {
-                    return bloc.getMap();
+                    return Stack(
+                      children: [
+                        bloc.getMap(),
+                        SpeedAndHeadingInfoBox(),
+                        Positioned(
+                          bottom: 40,
+                          right: 24,
+                          child: FloatingActionButton(
+                            onPressed: () {
+                              bloc.add(CameraUpdateRequested(location: LatLng(snapshot.data.latitude, snapshot.data.longitude), zoom: 10));
+                              bloc.add(TrackingModeUpdateRequested(mode: MyLocationTrackingMode.Tracking));
+                            },
+                            child: Icon(Istos.crosshairs),
+                          )
+                        )
+                      ]
+                    );
                   }
 
                   return Stack(

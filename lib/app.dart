@@ -1,9 +1,19 @@
+import 'dart:ui';
+
 import 'package:HybridSailmate/config/config.dart';
 import 'package:HybridSailmate/map/map.dart';
 import 'package:HybridSailmate/splash/splash.dart';
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:config_repository/config_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+class PageRouteWithoutTransition extends MaterialPageRoute {
+  PageRouteWithoutTransition({builder}) : super(builder: builder);
+
+  @override
+  Duration get transitionDuration => const Duration(milliseconds: 0);
+}
 
 class App extends StatelessWidget {
   const App({
@@ -40,16 +50,28 @@ class _AppViewState extends State<AppView> {
       navigatorKey: _navigatorKey,
       builder: (context, child) {
         context.bloc<ConfigBloc>().init();
-        return BlocListener<ConfigBloc, MapConfig>(
-          listener: (context, state) {
-            if (state.mapboxApiKey != null && state.mapboxStyleString != null) {
-              _navigator.pushAndRemoveUntil<void>(
-                  MapPage.route(state.mapboxApiKey, state.mapboxStyleString),
-                  (route) => false,
-                );
-            }
-          },
-          child: child,
+        return Scaffold(
+          body: ColorfulSafeArea(
+            overflowRules: OverflowRules.symmetric(vertical: true),
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            color: Colors.white.withOpacity(0.4),
+            child: BlocListener<ConfigBloc, MapConfig>(
+              listener: (context, state) {
+                if (state.mapboxApiKey != null && state.mapboxStyleString != null) {
+                  _navigator.pushAndRemoveUntil<void>(
+                      PageRouteWithoutTransition(
+                        builder: (_) => MapPage(
+                          mapboxApiKey: state.mapboxApiKey,
+                          mapboxStyleString: state.mapboxStyleString
+                        )
+                      ),
+                      (route) => false,
+                    );
+                }
+              },
+              child: child,
+            )
+          )
         );
       },
       onGenerateRoute: (_) => SplashPage.route(),
