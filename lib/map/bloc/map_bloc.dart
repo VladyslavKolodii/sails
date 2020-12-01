@@ -142,7 +142,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
   }
 
   Future<MapboxMap> _createMap(String accessToken, String styleString) {
-    final Completer<MapboxMap> completer = Completer<MapboxMap>();
+    final completer = Completer<MapboxMap>();
     completer.complete(_createMapSync(accessToken, styleString));
     return completer.future;
   }
@@ -179,8 +179,8 @@ class MapBloc extends Bloc<MapEvent, MapState> {
   ) async* {
     yield PointOfInterestsLoadInProgress();
     try {
-      final List<PointOfInterestWrapper> wrapped = await pointOfInterestRepository.getPointOfInterests();
-      final List<PointOfInterest> pois = wrapped.map((PointOfInterestWrapper wrapper) => wrapper.point_of_interest).toList();
+      final wrapped = await pointOfInterestRepository.getPointOfInterests();
+      final pois = wrapped.map((PointOfInterestWrapper wrapper) => wrapper.point_of_interest).toList();
       pois.map((PointOfInterest poi) {
         _mapController.addCircle(CircleOptions(geometry: LatLng(poi.lat, poi.lon)));
       }).toList();
@@ -212,7 +212,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
   ) async* {
     yield MapCreateInProgress();
     try {
-      MapboxMap map = await _createMap(event.accessToken, event.styleString);
+      var map = await _createMap(event.accessToken, event.styleString);
       _map = map;
       await Future.delayed(Duration(seconds: 1));
       yield MapReady(mapboxMap: map);

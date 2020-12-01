@@ -1,5 +1,5 @@
-import 'package:HybridSailmate/map/bloc/map_bloc.dart';
-import 'package:HybridSailmate/widgets/speed_and_heading_info_box.dart';
+import 'package:hybrid_sailmate/map/bloc/map_bloc.dart';
+import 'package:hybrid_sailmate/widgets/speed_and_heading_info_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +23,7 @@ class MapPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     // ignore: close_sinks
-    final MapBloc bloc = BlocProvider.of<MapBloc>(context);
+    final bloc = BlocProvider.of<MapBloc>(context);
 
     return Container(
         child: FutureBuilder<Position>(

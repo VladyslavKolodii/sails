@@ -1,8 +1,8 @@
 import 'dart:ui';
 
-import 'package:HybridSailmate/config/config.dart';
-import 'package:HybridSailmate/map/map.dart';
-import 'package:HybridSailmate/splash/splash.dart';
+import 'package:hybrid_sailmate/config/config.dart';
+import 'package:hybrid_sailmate/map/map.dart';
+import 'package:hybrid_sailmate/splash/splash.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:config_repository/config_repository.dart';

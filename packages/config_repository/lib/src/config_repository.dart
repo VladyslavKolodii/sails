@@ -30,8 +30,8 @@ class ConfigRepository {
       await _init();
     }
 
-    final String apiKey = _config.getString('mapbox_api_key');
-    final String styleString = _config.getString('mapbox_style_string');
+    final apiKey = _config.getString('mapbox_api_key');
+    final styleString = _config.getString('mapbox_style_string');
 
     return MapConfig(apiKey, styleString);
   }

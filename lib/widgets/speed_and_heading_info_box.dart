@@ -5,10 +5,10 @@ import 'package:geolocator/geolocator.dart';
 class SpeedAndHeadingInfoBox extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final AsyncSnapshot<Position> location = useStream(Geolocator.getPositionStream(desiredAccuracy: LocationAccuracy.bestForNavigation));
+    final location = useStream(Geolocator.getPositionStream(desiredAccuracy: LocationAccuracy.bestForNavigation));
 
-    final double speed = location.data?.speed;
-    final double heading = location.data?.heading;
+    final speed = location.data?.speed;
+    final heading = location.data?.heading;
 
     return Positioned(
       top: 58,

@@ -4,18 +4,19 @@ import 'package:dio/dio.dart';
 
 part 'rest_client.g.dart';
 
-@RestApi(baseUrl: "https://api.sailmate.fi")
+@RestApi(baseUrl: 'https://api.sailmate.fi')
 abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
-  @GET("/point_of_interests.json")
+  @GET('/point_of_interests.json')
   Future<List<PointOfInterestWrapper>> getPointOfInterests();
 }
 
 @JsonSerializable()
 class PointOfInterestWrapper {
+  // ignore: non_constant_identifier_names
   PointOfInterest point_of_interest;
-
+  // ignore: non_constant_identifier_names
   PointOfInterestWrapper({this.point_of_interest});
 
   factory PointOfInterestWrapper.fromJson(Map<String, dynamic> json) => _$PointOfInterestWrapperFromJson(json);

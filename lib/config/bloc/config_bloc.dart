@@ -11,7 +11,7 @@ class ConfigBloc extends Cubit<MapConfig> {
   final ConfigRepository _configRepository;
 
   Future<void> init() async {
-    MapConfig config = await _configRepository.getMapboxConfig();
+    var config = await _configRepository.getMapboxConfig();
     emit(config);
   }
 }
