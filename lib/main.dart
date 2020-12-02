@@ -11,5 +11,5 @@ void main() {
     providers: [
       BlocProvider<MapBloc>(create: (context) => MapBloc(pointOfInterestRepository: RestClient(Dio())))
     ],
-    child: App(configRepository: ConfigRepository())));
+    child: MaterialApp(home: App(configRepository: ConfigRepository()))));
 }

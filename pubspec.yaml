@@ -20,6 +20,7 @@ dependencies:
   flutter_hooks: 0.14.1
   colorful_safe_area: ^0.2.1
   fontisto_flutter: ^3.0.4
+  google_fonts: ^1.1.1
   config_repository:
     path: packages/config_repository
   point_of_interest_repository:

@@ -29,6 +29,8 @@ class MapPage extends HookWidget {
         child: FutureBuilder<Position>(
           future: Geolocator.getCurrentPosition(),
           builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
+            var latitude = snapshot.data?.latitude;
+            var longitude = snapshot.data?.longitude;
             if (snapshot.hasError) {
               print('Error fetching current location');
             }
@@ -41,10 +43,10 @@ class MapPage extends HookWidget {
                      BlocProvider.of<MapBloc>(context).add(MapCreateRequested(accessToken: mapboxApiKey, styleString: mapboxStyleString));
                   }
 
-                  if (state is MapRendered) {
+                  if (state is MapRendered && latitude != null && longitude != null) {
                     bloc
                       .add(
-                        CameraUpdateRequested(location: LatLng(snapshot.data.latitude, snapshot.data.longitude), zoom: 10)
+                        CameraUpdateRequested(location: LatLng(latitude, longitude), zoom: 10)
                       );
                   }
 

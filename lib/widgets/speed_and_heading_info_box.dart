@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:hybrid_sailmate/widgets/main_button_decoration.dart';
 
 class SpeedAndHeadingInfoBox extends HookWidget {
   @override
@@ -26,11 +27,7 @@ class SpeedAndHeadingInfoBox extends HookWidget {
             Text('deg')
           ]
         ),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          boxShadow: [BoxShadow(spreadRadius: 0.1, color: Colors.grey, blurRadius: 1)]
-        ),
+        decoration: MainButtonDecoration(),
         padding: EdgeInsets.fromLTRB(16, 11, 16, 11)
       )
     );
