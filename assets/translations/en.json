@@ -1,0 +1,17 @@
+{
+  "drawer": {
+    "profileTitle": "My profile",
+    "routesTitle": "Saved routes",
+    "tracksTitle": "Saved tracks",
+    "placesTitle": "Saved places",
+    "offlineChartTitle": "Download offline maps",
+    "settingsTitle": "Settings",
+    "subscriptionsTitle": "Subscriptions",
+    "helpTitle": "Help center",
+    "termsTitle": "Term & conditions",
+    "logoutTitle": "Logout",
+    "settings": {
+      "changeLanguage": "Change language"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "drawer": {
+    "helpTitle": "Käytön tuki",
+    "logoutTitle": "Kirjaudu ulos",
+    "offlineChartTitle": "Lataa kartat laitteeseen",
+    "placesTitle": "Omat kohteet",
+    "profileTitle": "Profiili",
+    "routesTitle": "Tallennetut reitit",
+    "settingsTitle": "Asetukset",
+    "subscriptionsTitle": "Tilaukset",
+    "termsTitle": "Käyttöehdot",
+    "tracksTitle": "Tallennetut jäljet",
+    "settings": {
+      "changeLanguage": "Vaihda kieli"
+    }
+  }
+}

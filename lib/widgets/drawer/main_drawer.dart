@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fontisto_flutter/fontisto_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:hybrid_sailmate/widgets/drawer/main_drawer_list_tile.dart';
+import 'package:hybrid_sailmate/widgets/drawer/settings/language_selector.dart';
 import 'package:hybrid_sailmate/widgets/main_button_decoration.dart';
+import 'package:hybrid_sailmate/widgets/text_styles.dart';
 
 final color = Color(int.parse('0xffF2F5F9'));
 final barrierColor = Color(int.parse('0xffD6DFF0'));
@@ -37,66 +39,66 @@ class MainDrawer extends StatelessWidget {
                 height: 102,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [MainDrawerListTile(label: 'My profile', icon: Istos.person)],
+                  children: [MainDrawerListTile(label: 'drawer.profileTitle'.tr(), icon: Istos.person)],
                 ),
               ),
               Divider(),
               Container(
                 height: 60,
-                child: MainDrawerListTile(label: 'Saved routes', icon: Istos.star, onTap: () {
+                child: MainDrawerListTile(label: 'drawer.routesTitle'.tr(), icon: Istos.star, onTap: () {
                   Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'Saved routes');
+                  _modalBottomSheet(context, 'drawer.routesTitle');
                 }),
               ),
               Container(
                 height: 60,
-                child: MainDrawerListTile(label: 'Tracked routes', icon: Istos.history, onTap: () {
+                child: MainDrawerListTile(label: 'drawer.tracksTitle'.tr(), icon: Istos.history, onTap: () {
                   Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'Tracked routes');
+                  _modalBottomSheet(context, 'drawer.tracksTitle');
                 }),
               ),
               Container(
                 height: 60,
-                child: MainDrawerListTile(label: 'Saved places', icon: Istos.heart, onTap: () {
+                child: MainDrawerListTile(label: 'drawer.placesTitle'.tr(), icon: Istos.heart, onTap: () {
                   Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'Saved places');
-                }),
-              ),
-              Divider(),
-              Container(
-                height: 60,
-                child: MainDrawerListTile(label: 'Download chart for offline use', icon: Istos.cloud_down, onTap: () {
-                  Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'Download chart for offline use');
-                }),
-              ),
-              Container(
-                height: 60,
-                child: MainDrawerListTile(label: 'Settings', icon: Istos.spinner_cog, onTap: () {
-                  Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'Settings');
-                }),
-              ),
-              Container(
-                height: 60,
-                child: MainDrawerListTile(label: 'Subscriptions', icon: Istos.wallet, onTap: () {
-                  Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'Subscriptions');
+                  _modalBottomSheet(context, 'drawer.placesTitle');
                 }),
               ),
               Divider(),
               Container(
                 height: 60,
-                child: MainDrawerListTile(label: 'Help Center', icon: Istos.info, onTap: () {
+                child: MainDrawerListTile(label: 'drawer.offlineChartTitle'.tr(), icon: Istos.cloud_down, onTap: () {
                   Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'Help Center');
+                  _modalBottomSheet(context, 'drawer.offlineChartTitle');
                 }),
               ),
               Container(
                 height: 60,
-                child: MainDrawerListTile(label: 'Terms & conditions', icon: Istos.check, onTap: () {
+                child: MainDrawerListTile(label: 'drawer.settingsTitle'.tr(), icon: Istos.spinner_cog, onTap: () {
                   Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'Terms & conditions');
+                  _modalBottomSheet(context, 'drawer.settingsTitle', content: [LanguageSelector()]);
+                }),
+              ),
+              Container(
+                height: 60,
+                child: MainDrawerListTile(label: 'drawer.subscriptionsTitle'.tr(), icon: Istos.wallet, onTap: () {
+                  Navigator.of(context).pop();
+                  _modalBottomSheet(context, 'drawer.subscriptionsTitle');
+                }),
+              ),
+              Divider(),
+              Container(
+                height: 60,
+                child: MainDrawerListTile(label: 'drawer.helpTitle'.tr(), icon: Istos.info, onTap: () {
+                  Navigator.of(context).pop();
+                  _modalBottomSheet(context, 'drawer.helpTitle');
+                }),
+              ),
+              Container(
+                height: 60,
+                child: MainDrawerListTile(label: 'drawer.termsTitle'.tr(), icon: Istos.check, onTap: () {
+                  Navigator.of(context).pop();
+                  _modalBottomSheet(context, 'drawer.termsTitle');
                 }),
               ),
               Divider(),
@@ -104,7 +106,7 @@ class MainDrawer extends StatelessWidget {
                 height: 102,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [MainDrawerListTile(label: 'Logout', icon: Icons.logout)],
+                  children: [MainDrawerListTile(label: 'drawer.logoutTitle'.tr(), icon: Icons.logout)],
                 ),
               ),
             ],
@@ -115,7 +117,7 @@ class MainDrawer extends StatelessWidget {
   }
 }
 
-void _modalBottomSheet(context, label){
+void _modalBottomSheet(context, key, { content }){
   showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15),
@@ -148,7 +150,8 @@ void _modalBottomSheet(context, label){
                       ),
                     ),
                   ),
-                  Expanded(child: Center(child: Text(label, style: GoogleFonts.lato(fontSize: 22)))),
+                  Expanded(child: Center(child: Text(tr(key), style: TextStyles.bottomSheetTitle()))),
+                  SizedBox(width: 46),
                 ],
               ),
             ),
@@ -163,11 +166,8 @@ void _modalBottomSheet(context, label){
                       borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
                       color: color
                     ),
-                    child: ListView.builder(
-                      itemCount: 25,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ListTile(title: Text('Item $index'));
-                      },
+                    child: ListView(
+                      children: content ?? Row()
                     ),
                   ),
                 ]
