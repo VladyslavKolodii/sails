@@ -1,4 +1,5 @@
 {
+  "logo": "Sailmate.",
   "drawer": {
     "helpTitle": "Käytön tuki",
     "logoutTitle": "Kirjaudu ulos",
@@ -13,5 +14,11 @@
     "settings": {
       "changeLanguage": "Vaihda kieli"
     }
+  },
+  "login": {
+    "signIn": "Kirjaudu",
+    "emailInput": "Sähköposti",
+    "getCodeButton": "Lähetä koodi",
+    "inputToken": "Syötä koodi"
   }
 }

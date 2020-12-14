@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hybrid_sailmate/app.dart';
+import 'package:hybrid_sailmate/auth/bloc/auth_bloc.dart';
 import 'package:hybrid_sailmate/map/bloc/map_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:config_repository/config_repository.dart';
@@ -15,7 +16,8 @@ void main() {
       fallbackLocale: Locale('en'),
       child: MultiBlocProvider(
         providers: [
-          BlocProvider<MapBloc>(create: (context) => MapBloc(pointOfInterestRepository: RestClient(Dio())))
+          BlocProvider<MapBloc>(create: (context) => MapBloc(pointOfInterestRepository: RestClient(Dio()))),
+          BlocProvider<AuthBloc>(create: (context) => AuthBloc(authRepository: AuthRepository()))
         ],
         child: Sailmate()
       )

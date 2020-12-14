@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fontisto_flutter/fontisto_flutter.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:hybrid_sailmate/auth/bloc/auth_bloc.dart';
 import 'package:hybrid_sailmate/widgets/drawer/main_drawer_list_tile.dart';
 import 'package:hybrid_sailmate/widgets/drawer/settings/language_selector.dart';
-import 'package:hybrid_sailmate/widgets/main_button_decoration.dart';
 import 'package:hybrid_sailmate/widgets/text_styles.dart';
 
 final color = Color(int.parse('0xffF2F5F9'));
@@ -47,21 +48,21 @@ class MainDrawer extends StatelessWidget {
                 height: 60,
                 child: MainDrawerListTile(label: 'drawer.routesTitle'.tr(), icon: Istos.star, onTap: () {
                   Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'drawer.routesTitle');
+                  _modalBottomSheet(context, 'drawer.routesTitle', content: [Row()]);
                 }),
               ),
               Container(
                 height: 60,
                 child: MainDrawerListTile(label: 'drawer.tracksTitle'.tr(), icon: Istos.history, onTap: () {
                   Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'drawer.tracksTitle');
+                  _modalBottomSheet(context, 'drawer.tracksTitle', content: [Row()]);
                 }),
               ),
               Container(
                 height: 60,
                 child: MainDrawerListTile(label: 'drawer.placesTitle'.tr(), icon: Istos.heart, onTap: () {
                   Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'drawer.placesTitle');
+                  _modalBottomSheet(context, 'drawer.placesTitle', content: [Row()]);
                 }),
               ),
               Divider(),
@@ -69,7 +70,7 @@ class MainDrawer extends StatelessWidget {
                 height: 60,
                 child: MainDrawerListTile(label: 'drawer.offlineChartTitle'.tr(), icon: Istos.cloud_down, onTap: () {
                   Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'drawer.offlineChartTitle');
+                  _modalBottomSheet(context, 'drawer.offlineChartTitle', content: [Row()]);
                 }),
               ),
               Container(
@@ -83,7 +84,7 @@ class MainDrawer extends StatelessWidget {
                 height: 60,
                 child: MainDrawerListTile(label: 'drawer.subscriptionsTitle'.tr(), icon: Istos.wallet, onTap: () {
                   Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'drawer.subscriptionsTitle');
+                  _modalBottomSheet(context, 'drawer.subscriptionsTitle', content: [Row()]);
                 }),
               ),
               Divider(),
@@ -91,14 +92,14 @@ class MainDrawer extends StatelessWidget {
                 height: 60,
                 child: MainDrawerListTile(label: 'drawer.helpTitle'.tr(), icon: Istos.info, onTap: () {
                   Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'drawer.helpTitle');
+                  _modalBottomSheet(context, 'drawer.helpTitle', content: [Row()]);
                 }),
               ),
               Container(
                 height: 60,
                 child: MainDrawerListTile(label: 'drawer.termsTitle'.tr(), icon: Istos.check, onTap: () {
                   Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'drawer.termsTitle');
+                  _modalBottomSheet(context, 'drawer.termsTitle', content: [Row()]);
                 }),
               ),
               Divider(),
@@ -106,7 +107,10 @@ class MainDrawer extends StatelessWidget {
                 height: 102,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [MainDrawerListTile(label: 'drawer.logoutTitle'.tr(), icon: Icons.logout)],
+                  children: [MainDrawerListTile(label: 'drawer.logoutTitle'.tr(), icon: Icons.logout, onTap: () {
+                    Navigator.of(context).pop();
+                    BlocProvider.of<AuthBloc>(context).add(RequestLogout());
+                  })],
                 ),
               ),
             ],
@@ -137,19 +141,7 @@ void _modalBottomSheet(context, key, { content }){
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    height: 46,
-                    width: 46,
-                    child: DecoratedBox(
-                      decoration: MainButtonDecoration(),
-                      child: FlatButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Icon(Istos.arrow_left, color: Colors.grey, size: 12),
-                      ),
-                    ),
-                  ),
+                  BackButton(),
                   Expanded(child: Center(child: Text(tr(key), style: TextStyles.bottomSheetTitle()))),
                   SizedBox(width: 46),
                 ],

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MainDrawerListTile extends StatelessWidget {
+class MainDrawerListTile extends HookWidget {
   MainDrawerListTile({
     @required this.label,
     @required this.icon,
@@ -15,8 +16,15 @@ class MainDrawerListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var selected = useState(false);
     return ListTile(
-      onTap: onTap ?? () => {},
+      selected: selected.value,
+      onTap: () {
+        selected.value = true;
+        Future.delayed(Duration(milliseconds: 200), onTap ?? () => {});
+      },
+      tileColor: Colors.transparent,
+      selectedTileColor: Colors.white,
       title: Text(label, style: GoogleFonts.lato(
         fontSize: 16
       )),

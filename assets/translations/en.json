@@ -1,4 +1,5 @@
 {
+  "logo": "Sailmate.",
   "drawer": {
     "profileTitle": "My profile",
     "routesTitle": "Saved routes",
@@ -13,5 +14,11 @@
     "settings": {
       "changeLanguage": "Change language"
     }
+  },
+  "login": {
+    "signIn": "Sign in",
+    "emailInput": "Email",
+    "getCodeButton": "Get code",
+    "inputToken": "Fill in token"
   }
 }

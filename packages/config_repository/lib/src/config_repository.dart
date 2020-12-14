@@ -7,7 +7,7 @@ class ConfigRepository {
   RemoteConfig _config;
 
   Future<void> _init() async {
-    _config = await RemoteConfig.instance;
+    _config ??= await RemoteConfig.instance;
     try {
       await _fetchAndActivate();
     } on FetchThrottledException catch (exception) {

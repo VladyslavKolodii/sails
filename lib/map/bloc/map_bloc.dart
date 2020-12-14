@@ -36,8 +36,8 @@ class CameraUpdateRequested extends MapEvent {
 
   const CameraUpdateRequested({
     @required this.location,
-    @required this.zoom,
-  }) : assert(location != null && zoom != null);
+    this.zoom,
+  }) : assert(location != null);
 
   @override
   List<Object> get props => [location, zoom];
@@ -124,6 +124,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     return MapboxMap(
       accessToken: accessToken,
       styleString: styleString,
+      rotateGesturesEnabled: false,
       onMapClick: (point, location) {
         _mapController.updateMyLocationTrackingMode(MyLocationTrackingMode.None);
       },

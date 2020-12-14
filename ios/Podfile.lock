@@ -1,4 +1,48 @@
 PODS:
+  - Amplify (1.4.4):
+    - Amplify/Default (= 1.4.4)
+  - Amplify/Default (1.4.4)
+  - amplify_auth_cognito (0.0.1):
+    - Amplify
+    - AmplifyPlugins/AWSCognitoAuthPlugin
+    - Flutter
+    - ObjectMapper
+  - amplify_core (0.0.1):
+    - Amplify
+    - AmplifyPlugins/AWSAPIPlugin
+    - AmplifyPlugins/AWSCognitoAuthPlugin
+    - AWSPluginsCore
+    - Flutter
+  - AmplifyPlugins/AWSAPIPlugin (1.4.4):
+    - AppSyncRealTimeClient (~> 1.4.0)
+    - AWSCore (~> 2.19.0)
+    - AWSPluginsCore (= 1.4.4)
+    - ReachabilitySwift (~> 5.0.0)
+  - AmplifyPlugins/AWSCognitoAuthPlugin (1.4.4):
+    - AWSAuthCore (~> 2.19.0)
+    - AWSCognitoIdentityProvider (~> 2.19.0)
+    - AWSCognitoIdentityProviderASF (~> 2.19.0)
+    - AWSCore (~> 2.19.0)
+    - AWSMobileClient (~> 2.19.0)
+    - AWSPluginsCore (= 1.4.4)
+  - AppSyncRealTimeClient (1.4.2):
+    - Starscream (~> 3.1.0)
+  - AWSAuthCore (2.19.1):
+    - AWSCore (= 2.19.1)
+  - AWSCognitoIdentityProvider (2.19.1):
+    - AWSCognitoIdentityProviderASF (= 2.19.1)
+    - AWSCore (= 2.19.1)
+  - AWSCognitoIdentityProviderASF (2.19.1)
+  - AWSCore (2.19.1)
+  - AWSMobileClient (2.19.1):
+    - AWSAuthCore (= 2.19.1)
+    - AWSCognitoIdentityProvider (= 2.19.1)
+    - AWSCognitoIdentityProviderASF (= 2.19.1)
+    - AWSCore (= 2.19.1)
+  - AWSPluginsCore (1.4.4):
+    - Amplify (= 1.4.4)
+    - AWSCore (~> 2.19.0)
+    - AWSMobileClient (~> 2.19.0)
   - Firebase/Analytics (6.34.0):
     - Firebase/Core
   - Firebase/Core (6.34.0):
@@ -94,13 +138,18 @@ PODS:
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
+  - ObjectMapper (4.2.0)
   - path_provider (0.0.1):
     - Flutter
   - PromisesObjC (1.2.11)
+  - ReachabilitySwift (5.0.0)
   - shared_preferences (0.0.1):
     - Flutter
+  - Starscream (3.1.1)
 
 DEPENDENCIES:
+  - amplify_auth_cognito (from `.symlinks/plugins/amplify_auth_cognito/ios`)
+  - amplify_core (from `.symlinks/plugins/amplify_core/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_remote_config (from `.symlinks/plugins/firebase_remote_config/ios`)
@@ -112,6 +161,15 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Amplify
+    - AmplifyPlugins
+    - AppSyncRealTimeClient
+    - AWSAuthCore
+    - AWSCognitoIdentityProvider
+    - AWSCognitoIdentityProviderASF
+    - AWSCore
+    - AWSMobileClient
+    - AWSPluginsCore
     - Firebase
     - FirebaseABTesting
     - FirebaseAnalytics
@@ -126,9 +184,16 @@ SPEC REPOS:
     - MapboxAnnotationExtension
     - MapboxMobileEvents
     - nanopb
+    - ObjectMapper
     - PromisesObjC
+    - ReachabilitySwift
+    - Starscream
 
 EXTERNAL SOURCES:
+  amplify_auth_cognito:
+    :path: ".symlinks/plugins/amplify_auth_cognito/ios"
+  amplify_core:
+    :path: ".symlinks/plugins/amplify_core/ios"
   firebase_analytics:
     :path: ".symlinks/plugins/firebase_analytics/ios"
   firebase_core:
@@ -147,6 +212,17 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/shared_preferences/ios"
 
 SPEC CHECKSUMS:
+  Amplify: c5bc69a3db5c25ae6835dc62c5334dab17ccce21
+  amplify_auth_cognito: 21e6e4acd861653d73875ee7d8ddce1a404e23cf
+  amplify_core: 0423f1ba3b97affd7ce84dc02fae327ce9be8473
+  AmplifyPlugins: 6397d3132f3aa082a02a902fe576d051ad837426
+  AppSyncRealTimeClient: 7fb160294d067b6c0c4b3c4ab91e953fd4cfba30
+  AWSAuthCore: 387c5e3482edbbb0fe754fa110a2a0203c783432
+  AWSCognitoIdentityProvider: e6932c709d3e0b234128aeb5f2052c9bf1032d8d
+  AWSCognitoIdentityProviderASF: 749f58b75e69f7f0144b9d38539525562b843d34
+  AWSCore: 55c154ae27efc5c98bdc30a0eeea5a35d10a2ab5
+  AWSMobileClient: b908cada3c35da9cfe5b4ff9947fcf70142495e7
+  AWSPluginsCore: c42c35ecc3c6afff1e98faf0a01d0cd1a362e77c
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
   firebase_analytics: 9118044ffb98bee71d84733fc594f5134fe4bc1b
   firebase_core: 335c02abd48672b7c83c683df833d0488a72e73e
@@ -167,10 +243,13 @@ SPEC CHECKSUMS:
   MapboxAnnotationExtension: d66de5561562c9d940153c0135725e671407b781
   MapboxMobileEvents: 2bc0ca2eedb627b73cf403258dce2b2fa98074a6
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
+  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
 
-PODFILE CHECKSUM: fe0e1ee7f3d1f7d00b11b474b62dd62134535aea
+PODFILE CHECKSUM: a5adfe7971131cf0589107393691ada35be2b45f
 
 COCOAPODS: 1.9.3
