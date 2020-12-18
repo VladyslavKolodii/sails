@@ -29,8 +29,9 @@ class PointOfInterest {
   String name;
   double lat;
   double lon;
+  String poi_type;
 
-  PointOfInterest({this.id, this.name, this.lat, this.lon});
+  PointOfInterest({this.id, this.name, this.lat, this.lon, this.poi_type});
 
   factory PointOfInterest.fromJson(Map<String, dynamic> json) => _$PointOfInterestFromJson(json);
   Map<String, dynamic> toJson() => _$PointOfInterestToJson(this);

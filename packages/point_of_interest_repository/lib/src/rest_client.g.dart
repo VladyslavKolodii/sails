@@ -28,6 +28,7 @@ PointOfInterest _$PointOfInterestFromJson(Map<String, dynamic> json) {
     name: json['name'] as String,
     lat: (json['lat'] as num)?.toDouble(),
     lon: (json['lon'] as num)?.toDouble(),
+    poi_type: json['poi_type'] as String,
   );
 }
 
@@ -37,6 +38,7 @@ Map<String, dynamic> _$PointOfInterestToJson(PointOfInterest instance) =>
       'name': instance.name,
       'lat': instance.lat,
       'lon': instance.lon,
+      'poi_type': instance.poi_type,
     };
 
 // **************************************************************************

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:flutter_map/plugin_api.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
@@ -23,6 +24,15 @@ class MapCreateRequested extends MapEvent {
 
   @override
   List<Object> get props => [accessToken, styleString];
+}
+
+class MapMarkerClicked extends MapEvent {
+  final PointOfInterest clickedMarker;
+
+  MapMarkerClicked(@required this.clickedMarker) : assert(clickedMarker != null);
+  @override
+  List<Object> get props => [clickedMarker];
+
 }
 
 class MapRenderRequested extends MapEvent {
@@ -74,12 +84,16 @@ abstract class MapVisible extends MapState {
   List<Object> get props => [];
 }
 
+class MapClicked extends MapState {}
+
 class MapInitial extends MapState {}
 
 class MapRenderInProgress extends MapVisible {}
 class MapRendered extends MapVisible {}
 
 class MapCreateInProgress extends MapState {}
+
+
 
 class MapReady extends MapVisible {
   final MapboxMap mapboxMap;
@@ -112,6 +126,7 @@ class PointOfInterestsLoadFailure extends MapVisible {}
 class MapBloc extends Bloc<MapEvent, MapState> {
   final RestClient pointOfInterestRepository;
 
+  List<PointOfInterest> targetInterestPlaces;
   MapboxMapController _mapController;
   MapboxMap _map;
 
@@ -127,7 +142,16 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       rotateGesturesEnabled: false,
       onMapClick: (point, location) {
         _mapController.updateMyLocationTrackingMode(MyLocationTrackingMode.None);
+        for(int i = 0; i < targetInterestPlaces.length; i ++) {
+          double distance = calculateDistance(location, LatLng(targetInterestPlaces[i].lat, targetInterestPlaces[i].lon));
+          if (distance < 0.3) {
+            print("name:" + targetInterestPlaces[i].name);
+            selectedPoint = targetInterestPlaces[i];
+            add(MapMarkerClicked(targetInterestPlaces[i]));
+          }
+        }
       },
+
       onMapCreated: (controller) {
         _mapController = controller;
         add(MapRenderRequested());
@@ -173,6 +197,15 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       await _mapController.updateMyLocationTrackingMode(event.mode);
       yield TrackingModeUpdated();
     }
+
+    if (event is MapMarkerClicked) {
+      yield* _mapMarkerClicked(event);
+    }
+  }
+
+  Stream<MapState> _mapMarkerClicked(MapMarkerClicked event) async* {
+    yield MapClicked();
+    // MapClicked
   }
 
   Stream<MapState> _mapPointOfInterestsRequestedToState(
@@ -181,11 +214,17 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     yield PointOfInterestsLoadInProgress();
     try {
       final wrapped = await pointOfInterestRepository.getPointOfInterests();
-      final pois = wrapped.map((PointOfInterestWrapper wrapper) => wrapper.point_of_interest).toList();
-      pois.map((PointOfInterest poi) {
-        _mapController.addCircle(CircleOptions(geometry: LatLng(poi.lat, poi.lon)));
+      targetInterestPlaces = wrapped.map((PointOfInterestWrapper wrapper) => wrapper.point_of_interest).toList();
+      targetInterestPlaces.map((PointOfInterest poi) {
+        if (poi.poi_type == "PORT") {
+          _mapController.addSymbol(SymbolOptions(
+            geometry: LatLng(poi.lat, poi.lon),
+            iconImage: "assets/images/ic_port_marker.png",
+          ));
+        }
+        // _mapController.addCircle(CircleOptions(geometry: LatLng(poi.lat, poi.lon)));
       }).toList();
-      yield PointOfInterestsLoadSuccess(pointOfInterests: pois);
+      yield PointOfInterestsLoadSuccess(pointOfInterests: targetInterestPlaces);
     } catch (_) {
       yield PointOfInterestsLoadFailure();
     }
@@ -222,3 +261,12 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     }
   }
 }
+
+double calculateDistance(LatLng A, LatLng B) {
+  var p = 0.01745322519943295;
+  var c = cos;
+  var a = 0.5 - c((B.latitude - A.latitude) * p) / 2 + c(A.latitude * p) * c(B.latitude * p) * (1 - c((B.longitude - A.longitude) * p)) / 2;
+  return 12742 * asin(sqrt(a));
+}
+
+PointOfInterest selectedPoint;

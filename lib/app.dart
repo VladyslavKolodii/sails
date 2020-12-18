@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:amplify_core/amplify_core.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import 'package:hybrid_sailmate/auth/view/token_page.dart';
 import 'amplifyconfiguration.dart';
 
 import 'package:hybrid_sailmate/auth/bloc/auth_bloc.dart';
@@ -116,51 +115,60 @@ class _AppViewState extends State<AppView> {
             color: Colors.white.withOpacity(0.4),
             child: BlocListener<AuthBloc, AuthState>(
               listener: (context, state) {
-                if (state is Authenticated) {
-                  _navigator.pushAndRemoveUntil(
+                _navigator.pushAndRemoveUntil(
                     PageRouteWithoutTransition(
                       builder: (_) => BlocBuilder<ConfigBloc, MapConfig>(
                         builder: (context, state) {
-                          if (state != null && state.mapboxApiKey != null && state.mapboxStyleString != null) {
-                            return MapPage(
-                              mapboxApiKey: state.mapboxApiKey,
-                              mapboxStyleString: state.mapboxStyleString,
-                              scaffoldKey: _scaffoldKey,
-                            );
-                          }
-
-                          return Center(child: CircularProgressIndicator());
-                        }
+                          return MapPage(mapboxApiKey: state.mapboxApiKey, mapboxStyleString: state.mapboxStyleString, scaffoldKey: _scaffoldKey);
+                        },
                       )
                     ),
                     (route) => false
-                  );
-                }
-
-                if (state is Unauthenticated || state is AuthFailed) {
-                  _navigator.pushAndRemoveUntil(
-                    PageRouteWithoutTransition(
-                      builder: (_) => LoginPage(),
-                    ),
-                    (route) => false,
-                  );
-                }
-
-                if (state is AuthTokenSend) {
-                  _navigator.pushAndRemoveUntil(
-                    PageRouteWithoutTransition(
-                      builder: (_) => TokenPage(),
-                    ),
-                    (route) => false,
-                  );
-                }
-
-                if (state is AuthInProgress || state is AlreadyAuthenticatedCheckInProgress) {
-                  _navigator.pushAndRemoveUntil(
-                    PageRouteWithoutTransition(builder: (_) => Center(child: CircularProgressIndicator())),
-                    (route) => false
-                  );
-                }
+                );
+                // if (state is Authenticated) {
+                //   _navigator.pushAndRemoveUntil(
+                //     PageRouteWithoutTransition(
+                //       builder: (_) => BlocBuilder<ConfigBloc, MapConfig>(
+                //         builder: (context, state) {
+                //           if (state != null && state.mapboxApiKey != null && state.mapboxStyleString != null) {
+                //             return MapPage(
+                //               mapboxApiKey: state.mapboxApiKey,
+                //               mapboxStyleString: state.mapboxStyleString,
+                //               scaffoldKey: _scaffoldKey,
+                //             );
+                //           }
+                //           return Center(child: CircularProgressIndicator());
+                //         }
+                //       )
+                //     ),
+                //     (route) => false
+                //   );
+                // }
+                //
+                // if (state is Unauthenticated || state is AuthFailed) {
+                //   _navigator.pushAndRemoveUntil(
+                //     PageRouteWithoutTransition(
+                //       builder: (_) => LoginPage(),
+                //     ),
+                //     (route) => false,
+                //   );
+                // }
+                //
+                // if (state is AuthTokenSend) {
+                //   _navigator.pushAndRemoveUntil(
+                //     PageRouteWithoutTransition(
+                //       builder: (_) => TokenPage(),
+                //     ),
+                //     (route) => false,
+                //   );
+                // }
+                //
+                // if (state is AuthInProgress || state is AlreadyAuthenticatedCheckInProgress) {
+                //   _navigator.pushAndRemoveUntil(
+                //     PageRouteWithoutTransition(builder: (_) => Center(child: CircularProgressIndicator())),
+                //     (route) => false
+                //   );
+                // }
               },
               child: child
             ),

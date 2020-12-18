@@ -1,14 +1,27 @@
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:hybrid_sailmate/map/bloc/map_bloc.dart';
+import 'package:hybrid_sailmate/widgets/bottomsheet/bottom_famouse_place.dart';
+import 'package:hybrid_sailmate/widgets/bottomsheet/bottom_sheet_carousel.dart';
+import 'package:hybrid_sailmate/widgets/bottomsheet/bottom_sheet_description.dart';
+import 'package:hybrid_sailmate/widgets/bottomsheet/bottom_sheet_preview.dart';
 import 'package:hybrid_sailmate/widgets/common/main_button_decoration.dart';
 import 'package:hybrid_sailmate/widgets/speed_and_heading_info_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
 import 'package:fontisto_flutter/fontisto_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
+import 'package:latlong/latlong.dart' as FlutterLatLng;
+import 'package:point_of_interest_repository/point_of_interest_repository.dart';
+import 'package:progress_hud/progress_hud.dart';
 
-class MapPage extends HookWidget {
+class MapPage extends StatefulWidget {
   const MapPage({
     @required this.mapboxApiKey,
     @required this.mapboxStyleString,
@@ -21,102 +34,208 @@ class MapPage extends HookWidget {
 
   static Route route(String mapboxApiKey, String mapboxStyleString, GlobalKey scaffoldKey) {
     return MaterialPageRoute<void>(
-      builder: (_) => MapPage(mapboxApiKey: mapboxApiKey, mapboxStyleString: mapboxStyleString, scaffoldKey: scaffoldKey)
+        builder: (_) => MapPage(mapboxApiKey: mapboxApiKey, mapboxStyleString: mapboxStyleString, scaffoldKey: scaffoldKey)
+    );
+  }
+  @override
+  _MapPageState createState() => _MapPageState();
+}
+
+class _MapPageState extends State<MapPage> {
+  MapboxMapController _mapController;
+  List<PointOfInterest> targetInterestPlaces;
+  RestClient pointOfInterestRepository;
+
+  ProgressHUD progressHUD;
+
+  @override
+  void initState() {
+    super.initState();
+
+    progressHUD = new ProgressHUD(
+      backgroundColor: Colors.black45,
+      color: Colors.black,
+      containerColor: Colors.white,
+      borderRadius: 5.0,
+      loading: false,
+      text: 'Loading...',
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    // ignore: close_sinks
-    final bloc = BlocProvider.of<MapBloc>(context);
+  Future initInterestingData() async {
+    http.Response response = await http.get("https://api.sailmate.fi/point_of_interests.json");
+    if (response.body.isNotEmpty) {
+      var jsonLabel = json.decode(response.body);
+      var items = jsonLabel as List;
+      var wrapper = items.map<PointOfInterestWrapper>((items) => PointOfInterestWrapper.fromJson(items)).toList();
+      targetInterestPlaces = wrapper.map((PointOfInterestWrapper wrapper) => wrapper.point_of_interest).toList();
+    } else {
+      // progressHUD.state.dismiss();
+      print("There is no data");
+    }
+    if (targetInterestPlaces != null) {
+      targetInterestPlaces.map((PointOfInterest poi) {
+        if (poi.poi_type == "PORT") {
+          _mapController.addSymbol(SymbolOptions(
+            geometry: LatLng(poi.lat, poi.lon),
+            iconImage: "assets/images/ic_port_marker.png",
+          ));
+        }
+      }).toList();
+    }
+  }
 
-    var height = MediaQuery.of(context).size.height;
-
-    return Container(
-        child: FutureBuilder<Position>(
-          future: Geolocator.getCurrentPosition(),
-          builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
-            var latitude = snapshot.data?.latitude;
-            var longitude = snapshot.data?.longitude;
-            if (snapshot.hasError) {
-              print('Error fetching current location');
-            }
-
-            return Center(
-              child: Stack(
+  void _showBottomSheet(PointOfInterest harbour) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      isDismissible: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 260 / MediaQuery.of(context).size.height,
+        minChildSize: 0.2,
+        maxChildSize: 0.95,
+        builder: (context, controller) {
+          return Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(20.0),
+                topLeft: Radius.circular(20.0),
+              )
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(20.0),
+                topLeft: Radius.circular(20.0),
+              ),
+              child: Column(
                 children: [
-                  BlocConsumer<MapBloc, MapState>(
-                    listener: (context, state) {},
-                    builder: (context, state) {
-                      if (state is MapInitial) {
-                        BlocProvider.of<MapBloc>(context).add(MapCreateRequested(accessToken: mapboxApiKey, styleString: mapboxStyleString));
-                      }
-
-                      if (state is MapRendered && latitude != null && longitude != null) {
-                        bloc
-                          .add(
-                            CameraUpdateRequested(location: LatLng(latitude, longitude), zoom: 10)
-                          );
-                      }
-
-                      if (state is CameraUpdated) {
-                        bloc.add(PointOfInterestsRequested());
-                      }
-
-                      if (bloc.getMap() != null && state is MapVisible) {
-                        return Stack(
+                  SizedBox(height: 16.0,),
+                  Row(
+                    children: [
+                      Spacer(),
+                      Container(
+                        width: 92,
+                        height: 4,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.all(Radius.circular(2.0)),
+                        ),
+                      ),
+                      Spacer()
+                    ],
+                  ),
+                  SizedBox(height: 16.0,),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      controller: controller,
+                      child: Container(
+                        child: Column(
                           children: [
-                            bloc.getMap(),
-                            SpeedAndHeadingInfoBox(top: height < 670 ? 25 : 58),
-                            Positioned(
-                              bottom: 40,
-                              right: 24,
-                              child: FloatingActionButton(
-                                onPressed: () {
-                                  bloc.add(CameraUpdateRequested(location: LatLng(snapshot.data.latitude, snapshot.data.longitude)));
-                                  bloc.add(TrackingModeUpdateRequested(mode: MyLocationTrackingMode.Tracking));
-                                },
-                                child: Icon(Istos.crosshairs),
-                              )
-                            )
-                          ]
-                        );
-                      }
-
-                      return Stack(
-                          children: [
+                            BottomSheetHeader(habur: harbour),
+                            SizedBox(height: 24.0,),
+                            BottomSheetCarousel(harbour: harbour),
+                            SizedBox(height: 16.0,),
+                            BottomFamousePlace(habur: harbour),
+                            BottomSheetDescription(habur: harbour),
                             Container(
-                              decoration: BoxDecoration(color: Colors.white.withOpacity(0.98)),
-                            ),
-                            Center(
-                              child: CircularProgressIndicator(),
+                              color: Colors.white,
+                              height: 200,
                             )
                           ],
-                        );
-                    }
-                  ),
-                  Positioned(
-                    left: 24,
-                    top: height < 670 ? 25 : 58,
-                    child: SizedBox(
-                      height: 46,
-                      width: 46,
-                      child: DecoratedBox(
-                        decoration: MainButtonDecoration(),
-                        child: FlatButton(
-                          onPressed: () {
-                            Scaffold.of(context).openDrawer();
-                          },
-                          child: Icon(Istos.nav_icon, color: Colors.grey, size: 12),
                         ),
                       ),
                     ),
                   ),
                 ],
-              )
-            );
+              ),
+            ),
+          );
+        },
+      )
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    return Container(
+      child: FutureBuilder<Position>(
+        future: Geolocator.getCurrentPosition(),
+        builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
+          var latitude = snapshot.data?.latitude;
+          var longitude = snapshot.data?.longitude;
+          if (snapshot.hasError) {
+            print('Error fetching current location');
           }
-        )
+          return Center(
+            child: Stack(
+              children: [
+                MapboxMap(
+                  initialCameraPosition: CameraPosition(target: LatLng(60, 20), zoom: 10),
+                  accessToken: widget.mapboxApiKey,
+                  styleString: widget.mapboxStyleString,
+                  myLocationEnabled: false,
+                  myLocationTrackingMode: MyLocationTrackingMode.Tracking,
+                  attributionButtonMargins: Point(0, 10000),
+                  onStyleLoadedCallback: () {
+                    initInterestingData();
+                  },
+                  rotateGesturesEnabled: false,
+                  onMapClick: (point, location) {
+                    _mapController.updateMyLocationTrackingMode(MyLocationTrackingMode.None);
+                    if (targetInterestPlaces != null) {
+                      for(int i = 0; i < targetInterestPlaces.length; i ++) {
+                        double distance = calculateDistance(location, LatLng(targetInterestPlaces[i].lat, targetInterestPlaces[i].lon));
+                        if (distance < 0.3) {
+                          print("name:" + targetInterestPlaces[i].name);
+                          selectedPoint = targetInterestPlaces[i];
+                          // Scaffold.of(context).openDrawer();
+                          _showBottomSheet(targetInterestPlaces[i]);
+                        }
+                      }
+                    }
+                  },
+                  onMapCreated: (controller) {
+                    _mapController = controller;
+                  },
+                ),
+                SpeedAndHeadingInfoBox(top: height < 670 ? 25 : 58),
+                Positioned(
+                    bottom: 40,
+                    right: 24,
+                    child: FloatingActionButton(
+                      onPressed: () {
+                        _mapController.updateMyLocationTrackingMode(MyLocationTrackingMode.Tracking);
+                        _mapController.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(latitude, longitude), zoom: 10.0)));
+                      },
+                      child: Icon(Istos.crosshairs),
+                    )
+                ),
+                Positioned(
+                  left: 24,
+                  top: height < 670 ? 25 : 58,
+                  child: SizedBox(
+                    height: 46,
+                    width: 46,
+                    child: DecoratedBox(
+                      decoration: MainButtonDecoration(),
+                      child: FlatButton(
+                        onPressed: () {
+                          Scaffold.of(context).openDrawer();
+                        },
+                        child: Icon(Istos.nav_icon, color: Colors.grey, size: 12),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
+

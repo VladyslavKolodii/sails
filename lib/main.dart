@@ -32,7 +32,7 @@ class Sailmate extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      home: App(configRepository: ConfigRepository())
+      home:App(configRepository: ConfigRepository())
     );
   }
 }

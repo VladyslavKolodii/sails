@@ -20,5 +20,19 @@
     "emailInput": "Email",
     "getCodeButton": "Get code",
     "inputToken": "Fill in token"
+  },
+  "Onborading": {
+    "Onborading1": {
+      "title": "Navigation and tracking",
+      "detail": "Aliqua id fugiat nostrud irure ex quis id quis adet. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut volupate aute id deserunt nisi."
+    },
+    "Onborading2": {
+      "title": "Plan and routes",
+      "detail": "Aliqua id fugiat nostrud irure ex quis id quis adet. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut volupate aute id deserunt nisi."
+    },
+    "Onborading3": {
+      "title": "Save your places and add notes",
+      "detail": "Aliqua id fugiat nostrud irure ex quis id quis adet. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut volupate aute id deserunt nisi."
+    }
   }
 }
