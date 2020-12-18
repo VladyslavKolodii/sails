@@ -13,4 +13,5 @@ class TextStyles {
   static TextStyle title() => GoogleFonts.lato(fontSize: 36, fontWeight: FontWeight.w700, height: 1.5);
   static TextStyle logo() => GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w700, height: 1.5, color: mainBlue);
   static TextStyle buttonWhite() => GoogleFonts.lato(fontSize: 12, fontWeight: FontWeight.w400, height: 1.5, color: Colors.white);
+  static TextStyle onBoradingtitle() => GoogleFonts.lato(fontSize: 36, fontWeight: FontWeight.bold);
 }
