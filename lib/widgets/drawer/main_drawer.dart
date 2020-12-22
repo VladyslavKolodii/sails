@@ -5,7 +5,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:hybrid_sailmate/auth/bloc/auth_bloc.dart';
 import 'package:hybrid_sailmate/widgets/drawer/main_drawer_list_tile.dart';
 import 'package:hybrid_sailmate/widgets/drawer/settings/language_selector.dart';
+import 'package:hybrid_sailmate/widgets/drawer/settings/profile.dart';
+import 'package:hybrid_sailmate/widgets/drawer/settings/terms_info.dart';
 import 'package:hybrid_sailmate/widgets/text_styles.dart';
+
+import 'settings/help_center.dart';
 
 final color = Color(int.parse('0xffF2F5F9'));
 final barrierColor = Color(int.parse('0xffD6DFF0'));
@@ -40,7 +44,10 @@ class MainDrawer extends StatelessWidget {
                 height: 102,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [MainDrawerListTile(label: 'drawer.profileTitle'.tr(), icon: Istos.person)],
+                  children: [MainDrawerListTile(label: 'drawer.profileTitle'.tr(), icon: Istos.person, onTap: () {
+                    Navigator.of(context).pop();
+                    _modalBottomSheet(context, 'drawer.profileTitle', content: [Profile()]);
+                  },)],
                 ),
               ),
               Divider(),
@@ -92,14 +99,14 @@ class MainDrawer extends StatelessWidget {
                 height: 60,
                 child: MainDrawerListTile(label: 'drawer.helpTitle'.tr(), icon: Istos.info, onTap: () {
                   Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'drawer.helpTitle', content: [Row()]);
+                  _modalBottomSheet(context, 'drawer.helpTitle', content: [HelpCenter()]);
                 }),
               ),
               Container(
                 height: 60,
                 child: MainDrawerListTile(label: 'drawer.termsTitle'.tr(), icon: Istos.check, onTap: () {
                   Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'drawer.termsTitle', content: [Row()]);
+                  _modalBottomSheet(context, 'drawer.termsTitle', content: [TermsInfo()]);
                 }),
               ),
               Divider(),

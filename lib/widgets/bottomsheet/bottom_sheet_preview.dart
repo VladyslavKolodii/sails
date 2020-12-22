@@ -5,8 +5,9 @@ import 'package:point_of_interest_repository/point_of_interest_repository.dart';
 
 class BottomSheetHeader extends StatelessWidget {
   final PointOfInterest habur;
+  final Function onTapRoute, onTapSave;
 
-  const BottomSheetHeader({Key key, @required this.habur}) : super(key: key);
+  const BottomSheetHeader({Key key, @required this.habur, @required this.onTapRoute, @required this.onTapSave}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +51,9 @@ class BottomSheetHeader extends StatelessWidget {
                         ),
                         Text("9 Km from you", style: TextStyles.bottomSheetItemLabelLigtGrey12(),),
                         SizedBox(height: 16.0,),
-                        CustomIconButton(txt: "Route to", icon: Icons.watch_later_outlined, txtColor: Colors.white, iconColor: Colors.white, paddingHorizontal: 31.5, backgroundColor: mainBlue, radius: 8.0, paddingVertical: 10.0),
+                        CustomIconButton(txt: "Route to", icon: Icons.watch_later_outlined, txtColor: Colors.white, iconColor: Colors.white, paddingHorizontal: 31.5, backgroundColor: mainBlue, radius: 8.0, paddingVertical: 10.0, didTap: onTapRoute,),
                         SizedBox(height: 8.0,),
-                        CustomIconButton(txt: "Save place", icon: Icons.favorite_border, txtColor: Colors.white, iconColor: Colors.white, paddingHorizontal: 31.5, backgroundColor: mainBlue, radius: 8.0, paddingVertical: 10.0),
+                        CustomIconButton(txt: "Save place", icon: Icons.favorite_border, txtColor: Colors.white, iconColor: Colors.white, paddingHorizontal: 31.5, backgroundColor: mainBlue, radius: 8.0, paddingVertical: 10.0, didTap: onTapSave,),
                       ],
                     ),
                   ),

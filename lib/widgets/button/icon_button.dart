@@ -10,6 +10,7 @@ class CustomIconButton extends StatelessWidget {
   final Color backgroundColor;
   final double radius;
   final double paddingVertical;
+  final Function didTap;
 
   const CustomIconButton({
     Key key,
@@ -20,15 +21,14 @@ class CustomIconButton extends StatelessWidget {
     @required this.paddingHorizontal,
     @required this.backgroundColor,
     @required this.radius,
-    @required this.paddingVertical}) : super(key: key);
+    @required this.paddingVertical,
+    @required this.didTap}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 46.0,
       child: RaisedButton(
-        onPressed: () {
-
-        },
+        onPressed: didTap,
         color: backgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radius),

@@ -1,15 +1,18 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class InputScaffold extends StatelessWidget {
-  InputScaffold({ @required this.child, this.color }) : super();
+  InputScaffold({ @required this.child, this.color, this.height = 60.0 }) : super();
 
   final Widget child;
   final Color color;
+  final double  height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      height: height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
         color: color ?? Colors.white,
@@ -17,7 +20,7 @@ class InputScaffold extends StatelessWidget {
         boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)],
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+        padding: EdgeInsets.symmetric(vertical: height == 60.0 ? 10 : 5.0, horizontal: 16),
         child: child,
       ),
     );
