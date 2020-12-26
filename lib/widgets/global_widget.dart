@@ -6,6 +6,9 @@ import 'package:point_of_interest_repository/point_of_interest_repository.dart';
 class GlobalWidget {
 
   static final latlngMask = new MaskTextInputFormatter(mask: 'N: ##°##.#′, E: ##°##.#′', filter: {"#": RegExp(r'[0-9]')});
+  static String mapApiKey;
+  static String mapboxStyleString;
+
 
   static BoxDecoration MainBoxDecoration(Color borderColor) => BoxDecoration(
     borderRadius: BorderRadius.all(Radius.circular(5)),

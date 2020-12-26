@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:point_of_interest_repository/point_of_interest_repository.dart';
 
-import '../text_styles.dart';
+import '../../text_styles.dart';
 
 class BottomFamousePlace extends StatefulWidget {
   final PointOfInterest habur;

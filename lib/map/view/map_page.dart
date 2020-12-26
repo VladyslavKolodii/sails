@@ -5,17 +5,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:hybrid_sailmate/map/bloc/map_bloc.dart';
 import 'package:hybrid_sailmate/screens/search_screens/search_main.dart';
-import 'package:hybrid_sailmate/widgets/bottomsheet/bottom_famouse_place.dart';
-import 'package:hybrid_sailmate/widgets/bottomsheet/bottom_sheet_carousel.dart';
-import 'package:hybrid_sailmate/widgets/bottomsheet/bottom_sheet_description.dart';
-import 'package:hybrid_sailmate/widgets/bottomsheet/bottom_sheet_preview.dart';
+import 'package:hybrid_sailmate/widgets/bottomsheet/main_bottom/bottom_famouse_place.dart';
+import 'package:hybrid_sailmate/widgets/bottomsheet/main_bottom/bottom_sheet_carousel.dart';
+import 'package:hybrid_sailmate/widgets/bottomsheet/main_bottom/bottom_sheet_description.dart';
+import 'package:hybrid_sailmate/widgets/bottomsheet/main_bottom/bottom_sheet_preview.dart';
 import 'package:hybrid_sailmate/widgets/common/main_button_decoration.dart';
 import 'package:hybrid_sailmate/widgets/drawer/main_drawer.dart';
 import 'package:hybrid_sailmate/widgets/global_widget.dart';
 import 'package:hybrid_sailmate/widgets/speed_and_heading_info_box.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:fontisto_flutter/fontisto_flutter.dart';
 import 'package:geolocator/geolocator.dart';
@@ -58,14 +56,9 @@ class _MapPageState extends State<MapPage> {
   void initState() {
     super.initState();
 
-    progressHUD = new ProgressHUD(
-      backgroundColor: Colors.black45,
-      color: Colors.black,
-      containerColor: Colors.white,
-      borderRadius: 5.0,
-      loading: false,
-      text: 'Loading...',
-    );
+    GlobalWidget.mapApiKey = widget.mapboxApiKey;
+    GlobalWidget.mapboxStyleString = widget.mapboxStyleString;
+
   }
 
   Future initInterestingData() async {
@@ -108,6 +101,7 @@ class _MapPageState extends State<MapPage> {
         draggable: false,
       ),
     );
+
   }
 
   void _showBottomSheet(PointOfInterest harbour) {
@@ -188,8 +182,6 @@ class _MapPageState extends State<MapPage> {
       )
     );
   }
-
-
 
   @override
   Widget build(BuildContext context) {

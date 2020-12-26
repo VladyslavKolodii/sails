@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fontisto_flutter/fontisto_flutter.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hybrid_sailmate/auth/bloc/auth_bloc.dart';
+import 'package:hybrid_sailmate/widgets/common/main_button_decoration.dart';
 import 'package:hybrid_sailmate/widgets/drawer/main_drawer_list_tile.dart';
 import 'package:hybrid_sailmate/widgets/drawer/settings/language_selector.dart';
 import 'package:hybrid_sailmate/widgets/drawer/settings/profile.dart';
+import 'package:hybrid_sailmate/widgets/drawer/settings/saved_routes/saved_route.dart';
 import 'package:hybrid_sailmate/widgets/drawer/settings/terms_info.dart';
+import 'package:hybrid_sailmate/widgets/global_widget.dart';
 import 'package:hybrid_sailmate/widgets/text_styles.dart';
 
 import 'settings/help_center.dart';
@@ -55,7 +59,10 @@ class MainDrawer extends StatelessWidget {
                 height: 60,
                 child: MainDrawerListTile(label: 'drawer.routesTitle'.tr(), icon: Istos.star, onTap: () {
                   Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'drawer.routesTitle', content: [Row()]);
+                  Navigator.of(context).push(PageRouteBuilder(
+                    opaque: false,
+                    pageBuilder: (_, __, ___) => SavedRoutes(title: 'drawer.routesTitle'.tr()),
+                  ),);
                 }),
               ),
               Container(
@@ -148,7 +155,17 @@ void _modalBottomSheet(context, key, { content }){
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  BackButton(),
+                  SizedBox(
+                    height: 46.0,
+                    width: 46.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                      ),
+                      child: BackButton(),
+                    )
+                  ),
                   Expanded(child: Center(child: Text(tr(key), style: TextStyles.bottomSheetTitle()))),
                   SizedBox(width: 46),
                 ],
@@ -178,3 +195,4 @@ void _modalBottomSheet(context, key, { content }){
     }
   );
 }
+
