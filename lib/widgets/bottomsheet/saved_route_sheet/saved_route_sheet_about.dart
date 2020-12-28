@@ -47,7 +47,7 @@ class _SavedRouteSheetAboutState extends State<SavedRouteSheetAbout> {
             width: 9,
             height: 9,
             decoration: BoxDecoration(
-              color: index == testData.length + 1 ? mainBlue : Colors.transparent,
+              color: index == (testData.length - 1) * 2 ? mainBlue : Colors.transparent,
               borderRadius: BorderRadius.circular(4.5),
               border: Border.all(
                   color: mainBlue
@@ -60,7 +60,7 @@ class _SavedRouteSheetAboutState extends State<SavedRouteSheetAbout> {
       children: [
         Container(
           width: 1,
-          height: 55,
+          height: 53,
           color: mainBlue,
         ),
       ],
@@ -136,7 +136,7 @@ class _SavedRouteSheetAboutState extends State<SavedRouteSheetAbout> {
                 child: ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: testData.length + 2,
+                  itemCount: testData.length * 2 - 1,
                   itemBuilder: (context, index) {
                     return _bindRouteLine(index);
                   },

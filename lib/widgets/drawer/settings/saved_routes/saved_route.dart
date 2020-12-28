@@ -10,6 +10,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hybrid_sailmate/model/model_route.dart';
 import 'package:hybrid_sailmate/model/model_route_latlng.dart';
 import 'package:hybrid_sailmate/widgets/alert/dialog_normal.dart';
+import 'package:hybrid_sailmate/widgets/bottomsheet/edit_route_sheet/edit_route_sheet_coordinate.dart';
+import 'package:hybrid_sailmate/widgets/bottomsheet/edit_route_sheet/edit_route_sheet_header.dart';
+import 'package:hybrid_sailmate/widgets/bottomsheet/edit_route_sheet/edit_route_sheet_note.dart';
 import 'package:hybrid_sailmate/widgets/bottomsheet/saved_route_sheet/saved_route_sheet_about.dart';
 import 'package:hybrid_sailmate/widgets/bottomsheet/saved_route_sheet/saved_route_sheet_header.dart';
 import 'package:hybrid_sailmate/widgets/bottomsheet/saved_route_sheet/saved_route_sheet_note.dart';
@@ -226,6 +229,8 @@ class _SavedRoutesState extends State<SavedRoutes> {
                             return DialogNormal(
                               title: "Are you sure that you want delete this saved route?",
                               content: "The explanation that your data will be deleted. Lorem ipsum dolor.",
+                              okStr: "Delete",
+                              noStr: "Cancel",
                               okAction: () {
                                 Navigator.of(context).pop(true);
                                 print("ok tapped 123456789");
@@ -400,7 +405,32 @@ class _SavedRoutesState extends State<SavedRoutes> {
                         child: Container(
                           child: Column(
                             children: [
-                              SavedRouteSheetHeader(),
+                              SavedRouteSheetHeader(onPressedEdit: () {
+                                Navigator.of(context).pop();
+                                _showEditRouteBottomsheet();
+                              }, onPressedDelete: () async {
+                                var dismiss = await showDialog<bool>(context: context,
+                                    builder: (context) {
+                                      return DialogNormal(
+                                        title: "Are you sure that you want delete this saved route?",
+                                        content: "The explanation that your data will be deleted. Lorem ipsum dolor.",
+                                        okStr: "Delete",
+                                        noStr: "Cancel",
+                                        okAction: () {
+                                          Navigator.of(context).pop(true);
+                                          print("ok tapped 123456789");
+                                        },
+                                        noAction: () {
+                                          Navigator.of(context).pop(false);
+                                          print("no tapped 123456789");
+                                        },
+                                      );
+                                    }
+                                );
+                                if(dismiss) {
+                                  Navigator.of(context).pop();
+                                }
+                              },),
                               SizedBox(height: 24.0,),
                               SavedRouteSheetAbout(),
                               SizedBox(height: 8.0,),
@@ -420,6 +450,115 @@ class _SavedRoutesState extends State<SavedRoutes> {
             );
           },
         )
+    );
+  }
+
+  void _showEditRouteBottomsheet() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      isDismissible: true,
+      barrierColor: barrierColor.withAlpha(100),
+      backgroundColor: Colors.transparent,
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 352 / MediaQuery.of(context).size.height,
+        minChildSize: 0.2,
+        maxChildSize: 0.95,
+        builder: (context, controller) {
+          return Container(
+            decoration: BoxDecoration(
+                color: Color(0xFFF2F5F9),
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(20.0),
+                  topLeft: Radius.circular(20.0),
+                )
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(20.0),
+                topLeft: Radius.circular(20.0),
+              ),
+              child: Stack(
+                children: [
+                  Column(
+                    children: [
+                      SizedBox(height: 16.0,),
+                      Row(
+                        children: [
+                          Spacer(),
+                          Container(
+                            width: 92,
+                            height: 4,
+                            decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.all(Radius.circular(2.0)),
+                            ),
+                          ),
+                          Spacer()
+                        ],
+                      ),
+                      SizedBox(height: 24.0,),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          controller: controller,
+                          child: Container(
+                            child: Column(
+                              children: [
+                                EditRouteSheetHeader(),
+                                SizedBox(height: 24,),
+                                EditRouteSheetCoordinate(),
+                                SizedBox(height: 24,),
+                                EditRouteSheetNote(),
+                                Container(
+                                  color: Colors.transparent,
+                                  height: 200,
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Positioned(
+                    left: 24, bottom: 40, right: 24,
+                    child: SizedBox(
+                      height: 46.0,
+                      width: double.infinity,
+                      child: RaisedButton(
+                        onPressed: () async {await showDialog<bool>(context: context,
+                            builder: (context) {
+                              return DialogNormal(
+                                title: "Do you want to save changes?",
+                                content: "The explanation that your data will be not saved",
+                                okStr: "Save",
+                                noStr: "Discard",
+                                okAction: () {
+                                  Navigator.of(context).pop(true);
+                                  print("ok tapped 123456789");
+                                },
+                                noAction: () {
+                                  Navigator.of(context).pop(false);
+                                  print("no tapped 123456789");
+                                },
+                              );
+                            }
+                          );
+                        },
+                        color: mainBlue,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                        ),
+                        child: Text("Save", style: TextStyles.buttonWhite(),),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+      )
     );
   }
 

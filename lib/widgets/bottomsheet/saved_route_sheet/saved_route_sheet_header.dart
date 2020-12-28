@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:hybrid_sailmate/widgets/alert/dialog_normal.dart';
 
 import '../../text_styles.dart';
 
 class SavedRouteSheetHeader extends StatefulWidget {
+  final Function onPressedEdit, onPressedDelete;
+
+  const SavedRouteSheetHeader({Key key, this.onPressedEdit, this.onPressedDelete}) : super(key: key);
   @override
   _SavedRouteSheetHeaderState createState() => _SavedRouteSheetHeaderState();
 }
 
 class _SavedRouteSheetHeaderState extends State<SavedRouteSheetHeader> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -84,9 +89,7 @@ class _SavedRouteSheetHeaderState extends State<SavedRouteSheetHeader> {
                         )
                     ),
                     height: 46.0,
-                    onPressed: (){
-
-                    },
+                    onPressed: widget.onPressedEdit,
                     child: Text("Edit", style: TextStyles.buttonBlue(),),
                   ),
                 ),
@@ -102,9 +105,7 @@ class _SavedRouteSheetHeaderState extends State<SavedRouteSheetHeader> {
                         )
                     ),
                     height: 46.0,
-                    onPressed: () {
-
-                    },
+                    onPressed: widget.onPressedDelete,
                     child: Text("Delete", style: TextStyles.buttonBlue()),
                   ),
                 )

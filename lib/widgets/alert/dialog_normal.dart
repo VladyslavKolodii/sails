@@ -8,10 +8,12 @@ class DialogNormal extends StatelessWidget {
 
   final String title;
   final String content;
+  final String okStr;
+  final String noStr;
   final Function okAction;
   final Function noAction;
 
-  const DialogNormal({Key key, @required this.title, @required this.content, @required this.okAction, @required this.noAction}) : super(key: key);
+  const DialogNormal({Key key, @required this.title, @required this.content, @required this.okStr, @required this.noStr, @required this.okAction, @required this.noAction}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +58,7 @@ class DialogNormal extends StatelessWidget {
                             ),
                             height: 46.0,
                             onPressed: noAction,
-                            child: Text("Cancel", style: TextStyles.buttonBlue(),),
+                            child: Text(noStr, style: TextStyles.buttonBlue(),),
                           ),
                         ),
                         SizedBox(width: 24.0,),
@@ -69,7 +71,7 @@ class DialogNormal extends StatelessWidget {
                             ),
                             height: 46.0,
                             onPressed: okAction,
-                            child: Text("Delete", style: TextStyles.buttonWhite()),
+                            child: Text(okStr, style: TextStyles.buttonWhite()),
                           ),
                         )
                       ],

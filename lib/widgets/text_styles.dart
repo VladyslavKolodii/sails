@@ -20,4 +20,5 @@ class TextStyles {
   static TextStyle termslogo() => GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w700, color: mainBlue, letterSpacing: -1.2);
   static TextStyle blackLabel14() => GoogleFonts.lato(fontSize: 14, fontWeight: FontWeight.w600);
   static TextStyle underlineBtn14() => GoogleFonts.lato(fontSize: 14, fontWeight: FontWeight.w600, color: mainBlue, decoration: TextDecoration.underline);
+  static TextStyle bottomSheetItemInputLigtGrey12() => GoogleFonts.lato(fontSize: 12,color: Colors.grey[400]);
 }
