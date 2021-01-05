@@ -3,11 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hybrid_sailmate/auth/bloc/auth_bloc.dart';
-import 'package:hybrid_sailmate/widgets/text_styles.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-final background = Color(int.parse('0xffE9E9E9'));
-final mainBlue = Color(int.parse('0xff4B7CC6'));
 
 class TokenForm extends HookWidget {
   @override
@@ -19,7 +17,7 @@ class TokenForm extends HookWidget {
     return SizedBox.expand(
       child: Container(
         decoration: BoxDecoration(
-          color: background,
+          color: mainColorDisabled,
           image: DecorationImage(
             image: AssetImage('assets/images/login_background.png'),
             alignment: Alignment.topLeft
@@ -35,11 +33,11 @@ class TokenForm extends HookWidget {
                 children: [
                   Image(image: AssetImage('assets/images/sailmate_rounded.png')),
                   SizedBox(width: 20),
-                  Text('logo'.tr(), style: TextStyles.logo()),
+                  Text('logo'.tr(), style: logo()),
                 ]
               ),
               SizedBox(height: 47),
-              Row(mainAxisAlignment: MainAxisAlignment.start, children: [Text('login.inputToken'.tr(), style: TextStyles.title())]),
+              Row(mainAxisAlignment: MainAxisAlignment.start, children: [Text('login.inputToken'.tr(), style: title())]),
               SizedBox(height: 42),
               Container(
                 child: PinCodeTextField(
@@ -62,7 +60,7 @@ class TokenForm extends HookWidget {
                   cursorColor: Colors.black,
                   animationDuration: Duration(milliseconds: 300),
                   textStyle: TextStyle(fontSize: 20, height: 1.6),
-                  backgroundColor: background,
+                  backgroundColor: mainColorDisabled,
                   enableActiveFill: true,
                   controller: textEditingController,
                   keyboardType: TextInputType.number,

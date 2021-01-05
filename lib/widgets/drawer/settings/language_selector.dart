@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 import 'package:hybrid_sailmate/widgets/common/input_scaffold.dart';
-import 'package:hybrid_sailmate/widgets/text_styles.dart';
 
 class LanguageSelector extends HookWidget {
   @override
@@ -20,7 +20,7 @@ class LanguageSelector extends HookWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('drawer.settings.changeLanguage'.tr(), style: TextStyles.bottomSheetItemLabel()),
+            Text('drawer.settings.changeLanguage'.tr(), style: bottomSheetItemLabel()),
             DropdownButton(
               value: selectedValue.value,
               items: items.map((item) => DropdownMenuItem(value: item, child: Text(item))).toList(),

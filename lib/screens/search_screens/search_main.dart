@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fontisto_flutter/fontisto_flutter.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 import 'package:hybrid_sailmate/widgets/common/main_button_decoration.dart';
 import 'package:hybrid_sailmate/widgets/global_widget.dart';
-import 'package:hybrid_sailmate/widgets/text_styles.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:point_of_interest_repository/point_of_interest_repository.dart';
 
 class SearchMain extends StatefulWidget {
@@ -77,7 +76,7 @@ class _SearchMainState extends State<SearchMain> {
                         decoration: MainButtonDecoration(),
                         child: TextFormField(
                           controller: widget.searchKeyController,
-                          style: TextStyles.bottomSheetItemLabel12(),
+                          style: bottomSheetItemLabel12(),
                           enabled: !isTapedSearchByCoordinate,
                           onChanged: (value) {
                             print(value);
@@ -101,10 +100,10 @@ class _SearchMainState extends State<SearchMain> {
                             prefixIcon: Icon(
                               Istos.search,
                               size: 16.0,
-                              color: mainBlue,
+                              color: mainColorBlue,
                             ),
-                            hintText: "What are you looking for?",
-                            hintStyle: TextStyles.bottomSheetItemLabelLigtGrey12(),
+                            hintText: 'What are you looking for?',
+                            hintStyle: bottomSheetItemLabelLigtGrey12(),
                           ),
                         ),
                       ),
@@ -135,10 +134,10 @@ class _SearchMainState extends State<SearchMain> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Or search by coordinate",
-                                    style: TextStyles.bottomSheetItemLabel12(),
+                                    'Or search by coordinate',
+                                    style: bottomSheetItemLabel12(),
                                   ),
-                                  Icon(Istos.arrow_right_l, size: 12.0, color: mainBlue,)
+                                  Icon(Istos.arrow_right_l, size: 12.0, color: mainColorBlue,)
                                 ],
                               ),
                             ),
@@ -154,10 +153,10 @@ class _SearchMainState extends State<SearchMain> {
                           itemBuilder: (context, index) {
                             return ListTile(
                               title: Text(
-                                filteredPOIS[index].name, style: TextStyles.bottomSheetItemLabel(),
+                                filteredPOIS[index].name, style: bottomSheetItemLabel(),
                               ),
                               onTap: () {
-                                print("In search Main: ////// " + '${filteredPOIS[index].lat}' + "/////" + '${filteredPOIS[index].lon}');
+                                print('In search Main: ////// ' + '${filteredPOIS[index].lat}' + '/////' + '${filteredPOIS[index].lon}');
                                 LatLng selectedPosition = new LatLng(filteredPOIS[index].lat, filteredPOIS[index].lon);
                                 Navigator.pop(context, selectedPosition);
                               },
@@ -182,13 +181,13 @@ class _SearchMainState extends State<SearchMain> {
                           padding: EdgeInsets.symmetric(horizontal: 16.0),
                           child: TextFormField(
                             controller: widget.coordinateController,
-                            style: TextStyles.bottomSheetItemLabel12(),
+                            style: bottomSheetItemLabel12(),
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 10.0),
                               border: InputBorder.none,
-                              hintText: "N: - - ° - - - ′, E: - - ° - - - ′",
-                              hintStyle: TextStyles.bottomSheetItemLabelLigtGrey12(),
+                              hintText: 'N: - - ° - - - ′, E: - - ° - - - ′',
+                              hintStyle: bottomSheetItemLabelLigtGrey12(),
                             ),
                             inputFormatters: [GlobalWidget.latlngMask],
                           ),
@@ -198,16 +197,16 @@ class _SearchMainState extends State<SearchMain> {
                     SizedBox(height: 40.0,),
                     RaisedButton(
                       onPressed: () {
-                        print("did tap search by coordinate button");
+                        print('did tap search by coordinate button');
                       },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0)
                       ),
-                      color: mainBlue,
+                      color: mainColorBlue,
                       padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
                       child: Text(
-                        "Search by coordinates",
-                        style: TextStyles.buttonWhite(),
+                        'Search by coordinates',
+                        style: buttonWhite(),
                       ),
                     )
                   ],

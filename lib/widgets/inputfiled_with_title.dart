@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 import 'package:hybrid_sailmate/widgets/common/input_scaffold.dart';
-import 'package:hybrid_sailmate/widgets/text_styles.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class InputFieldWithTitle extends StatelessWidget {
   final String title;
@@ -19,14 +18,14 @@ class InputFieldWithTitle extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: TextStyles.bottomSheetItemLabelLigtGrey12(),),
+        Text(title, style: bottomSheetItemLabelLigtGrey12(),),
         SizedBox(height: 4.0,),
         InputScaffold(
           child: TextFormField(
             controller: controller,
             textCapitalization: TextCapitalization.none,
             autocorrect: false,
-            style: TextStyles.bottomSheetItemLabel12(),
+            style: bottomSheetItemLabel12(),
             decoration: InputDecoration(
               border: InputBorder.none,
               focusedBorder: InputBorder.none,
@@ -34,7 +33,7 @@ class InputFieldWithTitle extends StatelessWidget {
               errorBorder: InputBorder.none,
               disabledBorder: InputBorder.none,
               hintText: hint,
-              hintStyle: TextStyles.bottomSheetItemLabelLigtGrey12(),
+              hintStyle: bottomSheetItemLabelLigtGrey12(),
             ),
             onChanged: (inputValue) {
             },

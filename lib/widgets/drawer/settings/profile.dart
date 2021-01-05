@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hybrid_sailmate/widgets/common/input_scaffold.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 import 'package:hybrid_sailmate/widgets/inputfiled_with_title.dart';
-import 'package:hybrid_sailmate/widgets/text_styles.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -19,9 +18,9 @@ class _ProfileState extends State<Profile> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 24.0,),
-        InputFieldWithTitle(title: "Previous Email", hint: "Enter Previous Email", controller: preEmailContriller),
+        InputFieldWithTitle(title: 'Previous Email', hint: 'Enter Previous Email', controller: preEmailContriller),
         SizedBox(height: 16.0,),
-        InputFieldWithTitle(title: "New Email", hint: "Enter New Email", controller: newEmailContriller),
+        InputFieldWithTitle(title: 'New Email', hint: 'Enter New Email', controller: newEmailContriller),
         SizedBox(height: 24.0,),
         Container(
           color: Colors.transparent,
@@ -32,13 +31,13 @@ class _ProfileState extends State<Profile> {
               borderRadius: BorderRadius.circular(8.0),
             ),
             onPressed: () => {
-              print(preEmailContriller.text + "////" + newEmailContriller.text),
+              print(preEmailContriller.text + '////' + newEmailContriller.text),
               setState(() => {
                 isExpanded = false
               })
             },
             color: Colors.black12,
-            child: Text("Save", style: TextStyles.buttonWhite(),),
+            child: Text('Save', style: buttonWhite(),),
           ),
         ),
         SizedBox(height: MediaQuery.of(context).viewInsets.bottom,)
@@ -53,16 +52,16 @@ class _ProfileState extends State<Profile> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ProfileInfo(title: "Full Name", value: "Samantha Jones"),
+          ProfileInfo(title: 'Full Name', value: 'Samantha Jones'),
           SizedBox(height: 16.0,),
-          ProfileInfo(title: "Email", value: "samantha.jones@gmail.com"),
+          ProfileInfo(title: 'Email', value: 'samantha.jones@gmail.com'),
           SizedBox(height: 36.0,),
           Container(
             width: MediaQuery.of(context).size.width,
             height: 46.0,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
-              border: Border.all(color: mainBlue, width: 1.0)
+              border: Border.all(color: mainColorBlue, width: 1.0)
             ),
             child: FlatButton(
               shape: RoundedRectangleBorder(
@@ -73,7 +72,7 @@ class _ProfileState extends State<Profile> {
                   isExpanded = true
                 })
               },
-              child: Text("Change Email", style: TextStyles.buttonBlue(),),
+              child: Text('Change Email', style: buttonBlue(),),
             ),
           ),
           isExpanded
@@ -96,7 +95,7 @@ class ProfileInfo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: TextStyles.bottomSheetItemLabelLigtGrey12(),),
+        Text(title, style: bottomSheetItemLabelLigtGrey12(),),
         SizedBox(height: 4.0,),
         Container(
           width: double.infinity,
@@ -112,7 +111,7 @@ class ProfileInfo extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(value, style: TextStyles.bottomSheetItemLabel(),)
+              Text(value, style: bottomSheetItemLabel(),)
             ],
           ),
         )

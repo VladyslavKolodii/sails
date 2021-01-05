@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hybrid_sailmate/widgets/alert/dialog_normal.dart';
-
-import '../../text_styles.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 
 class SavedRouteSheetHeader extends StatefulWidget {
   final Function onPressedEdit, onPressedDelete;
@@ -28,7 +26,7 @@ class _SavedRouteSheetHeaderState extends State<SavedRouteSheetHeader> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
                   ),
-                  child: ClipRRect(child: Image.asset("assets/images/img_sample.png", fit: BoxFit.cover,), borderRadius: BorderRadius.circular(8.0),)
+                  child: ClipRRect(child: Image.asset('assets/images/img_sample.png', fit: BoxFit.cover,), borderRadius: BorderRadius.circular(8.0),)
               ),
               SizedBox(width: 16.0,),
               Container(
@@ -37,21 +35,21 @@ class _SavedRouteSheetHeaderState extends State<SavedRouteSheetHeader> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Route name", style: TextStyles.bottomSheetItemLabel(),),
-                    Text("12 apr 2020 added", style: TextStyles.bottomSheetItemLabelLigtGrey12(),),
+                    Text('Route name', style: bottomSheetItemLabel(),),
+                    Text('12 apr 2020 added', style: bottomSheetItemLabelLigtGrey12(),),
                     Row(
                       children: [
-                        Image.asset("assets/images/ic_plan.png", width: 16.0, height: 16.0,),
+                        Image.asset('assets/images/ic_plan.png', width: 16.0, height: 16.0,),
                         SizedBox(width: 6.0,),
-                        Text("Plan to Apr 12, 2020", style: TextStyles.bottomSheetItemLabel()),
+                        Text('Plan to Apr 12, 2020', style: bottomSheetItemLabel()),
                       ],
                     ),
-                    Text("Route length - 6 nmi", style: TextStyles.bottomSheetItemLabelGrey12(),),
+                    Text('Route length - 6 nmi', style: bottomSheetItemLabelGrey12(),),
                     GestureDetector(
                         onTap: () {
 
                         },
-                        child: Text("Hide in map", style: TextStyles.underlineBtn14(),)
+                        child: Text('Hide in map', style: underlineBtn14(),)
                     ),
                   ],
                 ),
@@ -66,11 +64,11 @@ class _SavedRouteSheetHeaderState extends State<SavedRouteSheetHeader> {
               onPressed: () => {
 
               },
-              color: mainBlue,
+              color: mainColorBlue,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0)),
               ),
-              child: Text("Navigate", style: TextStyles.buttonWhite(),),
+              child: Text('Navigate', style: buttonWhite(),),
             ),
           ),
           SizedBox(height: 16.0,),
@@ -84,13 +82,13 @@ class _SavedRouteSheetHeaderState extends State<SavedRouteSheetHeader> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         side: BorderSide(
-                            color: mainBlue,
+                            color: mainColorBlue,
                             width: 1.0
                         )
                     ),
                     height: 46.0,
                     onPressed: widget.onPressedEdit,
-                    child: Text("Edit", style: TextStyles.buttonBlue(),),
+                    child: Text('Edit', style: buttonBlue(),),
                   ),
                 ),
                 SizedBox(width: 24.0,),
@@ -100,13 +98,13 @@ class _SavedRouteSheetHeaderState extends State<SavedRouteSheetHeader> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                         side: BorderSide(
-                            color: mainBlue,
+                            color: mainColorBlue,
                             width: 1.0
                         )
                     ),
                     height: 46.0,
                     onPressed: widget.onPressedDelete,
-                    child: Text("Delete", style: TextStyles.buttonBlue()),
+                    child: Text('Delete', style: buttonBlue()),
                   ),
                 )
               ],

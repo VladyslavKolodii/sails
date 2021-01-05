@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fontisto_flutter/fontisto_flutter.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 import 'package:hybrid_sailmate/widgets/common/main_button_decoration.dart';
 
 import '../../global_widget.dart';
-import '../../text_styles.dart';
 
 class EditRouteSheetNote extends StatefulWidget {
   @override
@@ -26,7 +25,7 @@ class _EditRouteSheetNoteState extends State<EditRouteSheetNote> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Add note", style: TextStyles.bottomSheetTitle(),),
+                Text('Add note', style: bottomSheetTitle(),),
                 Spacer(),
                 GestureDetector(
                     onTap: () {
@@ -34,7 +33,7 @@ class _EditRouteSheetNoteState extends State<EditRouteSheetNote> {
                         isAddNote = false;
                       });
                     },
-                    child: Text("save", style: TextStyles.underlineBtn14(),)
+                    child: Text('save', style: underlineBtn14(),)
                 ),
                 SizedBox(width: 24,),
                 InkWell(
@@ -50,7 +49,7 @@ class _EditRouteSheetNoteState extends State<EditRouteSheetNote> {
                           color: Colors.white,
                           borderRadius: BorderRadius.all(Radius.circular(12.0))
                       ),
-                      child: Icon(Icons.close, size: 12,color: mainBlue,)
+                      child: Icon(Icons.close, size: 12,color: mainColorBlue,)
                   ),
                 )
               ],
@@ -68,7 +67,7 @@ class _EditRouteSheetNoteState extends State<EditRouteSheetNote> {
                     hintText: 'Enter your note',
                     border: InputBorder.none
                 ),
-                style: TextStyles.bottomSheetItemLabel12(),
+                style: bottomSheetItemLabel12(),
               ),
             ),
             SizedBox(height: 16.0,),
@@ -88,7 +87,7 @@ class _EditRouteSheetNoteState extends State<EditRouteSheetNote> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Your note: ", style: TextStyles.bottomSheetTitle(),),
+              Text('Your note: ', style: bottomSheetTitle(),),
               Visibility(
                 visible: !isAddNote,
                 child: GestureDetector(
@@ -97,7 +96,7 @@ class _EditRouteSheetNoteState extends State<EditRouteSheetNote> {
                         isAddNote = true;
                       });
                     },
-                    child: Text("+ Add note", style: TextStyles.underlineBtn14(),)
+                    child: Text('+ Add note', style: underlineBtn14(),)
                 ),
               )
             ],
@@ -137,7 +136,7 @@ class _EditRouteSheetNoteState extends State<EditRouteSheetNote> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Apr 13, 2020', style: TextStyles.bottomSheetItemLabelLigtGrey12(),),
+                    Text('Apr 13, 2020', style: bottomSheetItemLabelLigtGrey12(),),
                     _bindUploadPhoto()
                   ],
                 ),
@@ -151,7 +150,7 @@ class _EditRouteSheetNoteState extends State<EditRouteSheetNote> {
                       child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
                           decoration: MainButtonDecoration(),
-                          child: Text("Somenote amet minim. Mollit non deserunt ullamco, ateest dolor do amet sint.", style: TextStyles.bottomSheetItemLabelGrey12(), maxLines: null,)
+                          child: Text('Somenote amet minim. Mollit non deserunt ullamco, ateest dolor do amet sint.', style: bottomSheetItemLabelGrey12(), maxLines: null,)
                       ),
                     ),
                     IconButton(
@@ -185,44 +184,42 @@ class _EditRouteSheetNoteState extends State<EditRouteSheetNote> {
   }
 
   Widget _bindPhotoCell() {
-    return Expanded (
-      child: Stack(
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: 8.0, right: 8.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(8.0))
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(8.0)),
-              child: Image.asset("assets/images/img_sample_1.png", fit: BoxFit.cover,),
-            ),
+    return Stack(
+      children: [
+        Container(
+          margin: EdgeInsets.only(top: 8.0, right: 8.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(8.0))
           ),
-          Positioned(
-            top: 0.0,
-            right: 0.0,
-            child: Container(
-              height: 24,
-              width: 24,
-              padding: EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                color: Colors.white
-              ),
-              child: Icon(Icons.close, size: 8, color: mainBlue,),
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            child: Image.asset('assets/images/img_sample_1.png', fit: BoxFit.cover,),
+          ),
+        ),
+        Positioned(
+          top: 0.0,
+          right: 0.0,
+          child: Container(
+            height: 24,
+            width: 24,
+            padding: EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              color: Colors.white
             ),
-          )
-        ],
-      ),
+            child: Icon(Icons.close, size: 8, color: mainColorBlue,),
+          ),
+        )
+      ],
     );
   }
 
   Widget _bindUploadPhoto() {
     return Row(
       children: [
-        SvgPicture.asset("assets/images/ic_camera.svg"),
+        SvgPicture.asset('assets/images/ic_camera.svg'),
         SizedBox(width: 4.0,),
-        Text("Uplaod photo", style: TextStyles.buttonBlue(),)
+        Text('Uplaod photo', style: buttonBlue(),)
       ],
     );
   }

@@ -17,9 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:fontisto_flutter/fontisto_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:hybrid_sailmate/widgets/text_styles.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
-import 'package:latlong/latlong.dart' as FlutterLatLng;
 import 'package:point_of_interest_repository/point_of_interest_repository.dart';
 import 'package:progress_hud/progress_hud.dart';
 
@@ -161,10 +159,10 @@ class _MapPageState extends State<MapPage> {
                               print("did tap save button");
                             },),
                             SizedBox(height: 24.0,),
-                            BottomSheetCarousel(harbour: harbour),
+                            BottomSheetCarousel(),
                             SizedBox(height: 16.0,),
-                            BottomFamousePlace(habur: harbour),
-                            BottomSheetDescription(habur: harbour),
+                            BottomFamousePlace(),
+                            BottomSheetDescription(),
                             Container(
                               color: Colors.white,
                               height: 200,

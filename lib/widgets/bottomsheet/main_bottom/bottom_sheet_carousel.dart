@@ -1,12 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 import 'package:hybrid_sailmate/widgets/onboarding/login/login_form.dart';
 import 'package:point_of_interest_repository/point_of_interest_repository.dart';
 
 class BottomSheetCarousel extends StatefulWidget {
-  final PointOfInterest harbour;
-
-  const BottomSheetCarousel({Key key, this.harbour}) : super(key: key);
   @override
   _BottomSheetCarouselState createState() => _BottomSheetCarouselState();
 }
@@ -60,7 +58,7 @@ class _BottomSheetCarouselState extends State<BottomSheetCarousel> {
               margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: _current == index ? mainBlue : mainBlue.withOpacity(0.2)
+                color: _current == index ? mainColorBlue : mainColorBlue.withOpacity(0.2)
               ),
             );
           }).toList()

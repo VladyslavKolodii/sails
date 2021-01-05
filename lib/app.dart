@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:amplify_core/amplify_core.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import 'package:hybrid_sailmate/onBoarding/onboarding.dart';
 import 'amplifyconfiguration.dart';
 
 import 'package:hybrid_sailmate/auth/bloc/auth_bloc.dart';
@@ -16,7 +15,6 @@ import 'package:config_repository/config_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hybrid_sailmate/widgets/drawer/main_drawer.dart';
 
-import 'auth/view/token_page.dart';
 
 class PageRouteWithoutTransition extends MaterialPageRoute {
   PageRouteWithoutTransition({builder}) : super(builder: builder);

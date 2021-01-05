@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hybrid_sailmate/widgets/text_styles.dart';
+import '';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:point_of_interest_repository/point_of_interest_repository.dart';
 

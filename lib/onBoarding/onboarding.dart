@@ -2,9 +2,8 @@ import 'package:config_repository/config_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hybrid_sailmate/app.dart';
-import 'package:hybrid_sailmate/auth/auth.dart';
 import 'package:hybrid_sailmate/model/model_onborading.dart';
-import 'package:hybrid_sailmate/widgets/text_styles.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -13,12 +12,6 @@ class OnBoarding extends StatefulWidget {
 }
 
 class _OnBoardingState extends State<OnBoarding> {
-  List<OnBoardingModel> onBoradingArr = [
-    OnBoardingModel('Onborading.Onborading1.title'.tr(), 'Onborading.Onborading1.detail'.tr(), 'assets/images/onboarding1.png'),
-    OnBoardingModel('Onborading.Onborading2.title'.tr(), 'Onborading.Onborading2.detail'.tr(), "assets/images/onboarding2.png"),
-    OnBoardingModel('Onborading.Onborading3.title'.tr(), 'Onborading.Onborading3.detail'.tr(), "assets/images/onboarding3.png")
-  ];
-
   int _current = 0;
 
   Widget _createOnboardingScreen(OnBoardingModel model, BuildContext context) {
@@ -36,12 +29,12 @@ class _OnBoardingState extends State<OnBoarding> {
             SizedBox(height: 80,),
             Container(
                 margin: EdgeInsets.symmetric(horizontal: 40.0),
-                child: Text(model.title, style: TextStyles.onBoradingtitle(),)
+                child: Text(model.title, style: onBoradingtitle(),)
             ),
             SizedBox(height: 16.0,),
             Container(
                 margin: EdgeInsets.symmetric(horizontal: 40.0),
-                child: Text(model.desc, style: TextStyles.bottomSheetItemLabelGrey12(),)
+                child: Text(model.desc, style: bottomSheetItemLabelGrey12(),)
             ),
           ],
         ),
@@ -86,7 +79,7 @@ class _OnBoardingState extends State<OnBoarding> {
                         margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: _current == index ? mainBlue : mainBlue.withOpacity(0.2)
+                            color: _current == index ? mainColorBlue : mainColorBlue.withOpacity(0.2)
                         ),
                       );
                     }).toList()
@@ -103,11 +96,11 @@ class _OnBoardingState extends State<OnBoarding> {
                       onPressed: () => {
                         _passedOnboarding(context)
                       },
-                      color: mainBlue,
+                      color: mainColorBlue,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       ),
-                      child: Text("Get started", style: TextStyles.buttonWhite(),),
+                      child: Text("Get started", style: buttonWhite(),),
                     ),
                   ),
                 ),

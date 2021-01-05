@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 import 'package:hybrid_sailmate/widgets/inputfiled_with_title.dart';
-import 'package:hybrid_sailmate/widgets/text_styles.dart';
 
 class EditRouteSheetHeader extends StatefulWidget {
+  final String title;
+  final String nameLB;
+  final String nameHint;
+  final String dateLB;
+  final String dateHint;
+
+  const EditRouteSheetHeader({Key key, this.title, this.nameLB, this.nameHint, this.dateLB, this.dateHint}) : super(key: key);
   @override
   _EditRouteSheetHeaderState createState() => _EditRouteSheetHeaderState();
 }
@@ -17,11 +24,11 @@ class _EditRouteSheetHeaderState extends State<EditRouteSheetHeader> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Edit Route", style: TextStyles.bottomSheetTitle(),),
+          Text(widget.title, style: bottomSheetTitle(),),
           SizedBox(height: 16.0,),
-          InputFieldWithTitle(title: "Route name", hint: "Enter your route name", controller: routeNameController),
+          InputFieldWithTitle(title: widget.nameLB, hint: widget.nameHint, controller: routeNameController),
           SizedBox(height: 16.0,),
-          InputFieldWithTitle(title: "Plannd start date", hint: "April 13, 2020", controller: plannedStartController),
+          InputFieldWithTitle(title: widget.dateLB, hint: widget.dateHint, controller: plannedStartController),
         ],
       ),
     );

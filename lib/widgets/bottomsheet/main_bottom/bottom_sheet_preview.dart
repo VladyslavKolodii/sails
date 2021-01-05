@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 import 'package:hybrid_sailmate/widgets/button/icon_button.dart';
-import 'package:hybrid_sailmate/widgets/text_styles.dart';
 import 'package:point_of_interest_repository/point_of_interest_repository.dart';
 
 class BottomSheetHeader extends StatelessWidget {
@@ -25,7 +25,7 @@ class BottomSheetHeader extends StatelessWidget {
                   child: Image(
                     height: 210.0,
                     width: 170,
-                    image: AssetImage("assets/images/image_16.png"),
+                    image: AssetImage('assets/images/image_16.png'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -35,25 +35,25 @@ class BottomSheetHeader extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Select starting point', style: TextStyles.bottomSheetItemLabel(),),
-                        Text('Harbour', style: TextStyles.bottomSheetItemLabelGrey12(),),
+                        Text('Select starting point', style: bottomSheetItemLabel(),),
+                        Text('Harbour', style: bottomSheetItemLabelGrey12(),),
                         SizedBox(height: 4.0,),
                         Row(
                           children: [
                             Image(
                               width: 10.0,
                               height: 12.0,
-                              image: AssetImage("assets/images/ic_latlng.png"),
+                              image: AssetImage('assets/images/ic_latlng.png'),
                             ),
                             SizedBox(width: 4.0,),
-                            Text("60 °28.0 ′N, 60 °28.0 ′E", style: TextStyles.bottomSheetItemLabel12(),),
+                            Text('60 °28.0 ′N, 60 °28.0 ′E', style: bottomSheetItemLabel12(),),
                           ],
                         ),
-                        Text("9 Km from you", style: TextStyles.bottomSheetItemLabelLigtGrey12(),),
+                        Text('9 Km from you', style: bottomSheetItemLabelLigtGrey12(),),
                         SizedBox(height: 16.0,),
-                        CustomIconButton(txt: "Route to", icon: Icons.watch_later_outlined, txtColor: Colors.white, iconColor: Colors.white, paddingHorizontal: 31.5, backgroundColor: mainBlue, radius: 8.0, paddingVertical: 10.0, didTap: onTapRoute,),
+                        CustomIconButton(txt: 'Route to', icon: Icons.watch_later_outlined, txtColor: Colors.white, iconColor: Colors.white, paddingHorizontal: 31.5, backgroundColor: mainColorBlue, radius: 8.0, paddingVertical: 10.0, didTap: onTapRoute,),
                         SizedBox(height: 8.0,),
-                        CustomIconButton(txt: "Save place", icon: Icons.favorite_border, txtColor: Colors.white, iconColor: Colors.white, paddingHorizontal: 31.5, backgroundColor: mainBlue, radius: 8.0, paddingVertical: 10.0, didTap: onTapSave,),
+                        CustomIconButton(txt: 'Save place', icon: Icons.favorite_border, txtColor: Colors.white, iconColor: Colors.white, paddingHorizontal: 31.5, backgroundColor: mainColorBlue, radius: 8.0, paddingVertical: 10.0, didTap: onTapSave,),
                       ],
                     ),
                   ),
@@ -75,7 +75,7 @@ class BottomSheetHeader extends StatelessWidget {
               child: Image(
                 height: 12.0,
                 width: 12.0,
-                image: AssetImage("assets/images/ic_port.png"),
+                image: AssetImage('assets/images/ic_port.png'),
               ),
             ),
           ),

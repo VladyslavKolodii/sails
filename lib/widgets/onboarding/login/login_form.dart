@@ -3,11 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hybrid_sailmate/auth/bloc/auth_bloc.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 import 'package:hybrid_sailmate/widgets/common/input_scaffold.dart';
-import 'package:hybrid_sailmate/widgets/text_styles.dart';
 
-final background = Color(int.parse('0xffE9E9E9'));
-final mainBlue = Color(int.parse('0xff4B7CC6'));
 
 class LoginForm extends HookWidget {
   @override
@@ -17,7 +15,7 @@ class LoginForm extends HookWidget {
     return SizedBox.expand(
       child: Container(
         decoration: BoxDecoration(
-          color: background,
+          color: mainColorDisabled,
           image: DecorationImage(
             image: AssetImage('assets/images/login_background.png'),
             alignment: Alignment.topLeft
@@ -33,11 +31,11 @@ class LoginForm extends HookWidget {
                 children: [
                   Image(image: AssetImage('assets/images/sailmate_rounded.png')),
                   SizedBox(width: 20),
-                  Text('logo'.tr(), style: TextStyles.logo()),
+                  Text('logo'.tr(), style: logo()),
                 ]
               ),
               SizedBox(height: 47),
-              Row(mainAxisAlignment: MainAxisAlignment.start, children: [Text('login.signIn'.tr(), style: TextStyles.title())]),
+              Row(mainAxisAlignment: MainAxisAlignment.start, children: [Text('login.signIn'.tr(), style: title())]),
               SizedBox(height: 42),
               InputScaffold(
                 child: TextFormField(
@@ -59,8 +57,8 @@ class LoginForm extends HookWidget {
               SizedBox(height: 16),
               Row(children: [
                 Expanded(child: InputScaffold(
-                  color: mainBlue, child: FlatButton(
-                    child: Text('login.getCodeButton'.tr(), style: TextStyles.buttonWhite()),
+                  color: mainColorBlue, child: FlatButton(
+                    child: Text('login.getCodeButton'.tr(), style: buttonWhite()),
                     onPressed: () {
                       BlocProvider.of<AuthBloc>(context).add(RequestAuthToken(email: email.value));
                     },

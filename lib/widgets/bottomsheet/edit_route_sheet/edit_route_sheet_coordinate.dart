@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 import 'package:hybrid_sailmate/widgets/global_widget.dart';
-import 'package:hybrid_sailmate/widgets/text_styles.dart';
 
 class EditRouteSheetCoordinate extends StatefulWidget {
   @override
@@ -12,8 +12,8 @@ class EditRouteSheetCoordinate extends StatefulWidget {
 class _EditRouteSheetCoordinateState extends State<EditRouteSheetCoordinate> {
 
   List<String> testData = [
-    "60 °28.0 ′N, 60 °28.0 ′E",
-    "",
+    '60 °28.0 ′N, 60 °28.0 ′E',
+    '',
   ];
 
   var switchVal = true;
@@ -33,17 +33,17 @@ class _EditRouteSheetCoordinateState extends State<EditRouteSheetCoordinate> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              str.isNotEmpty ? Text(str, style: TextStyles.bottomSheetItemLabel()) : TextField(
+              str.isNotEmpty ? Text(str, style: bottomSheetItemLabel()) : TextField(
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
                   errorBorder: InputBorder.none,
                   disabledBorder: InputBorder.none,
-                  hintText: "Enter where are you going to navigate",
-                  hintStyle: TextStyles.bottomSheetItemInputLigtGrey12()
+                  hintText: 'Enter where are you going to navigate',
+                  hintStyle: bottomSheetItemInputLigtGrey12()
                 ),
-                style: TextStyles.bottomSheetItemLabel(),
+                style: bottomSheetItemLabel(),
               ),
             ],
           ),
@@ -61,10 +61,10 @@ class _EditRouteSheetCoordinateState extends State<EditRouteSheetCoordinate> {
           width: 9,
           height: 9,
           decoration: BoxDecoration(
-            color: index == (testData.length - 1) * 2 ? mainBlue : Colors.transparent,
+            color: index == (testData.length - 1) * 2 ? mainColorBlue : Colors.transparent,
             borderRadius: BorderRadius.circular(4.5),
             border: Border.all(
-                color: mainBlue
+                color: mainColorBlue
             ),
           ),
         ),
@@ -75,7 +75,7 @@ class _EditRouteSheetCoordinateState extends State<EditRouteSheetCoordinate> {
         Container(
           width: 1,
           height: 55,
-          color: mainBlue,
+          color: mainColorBlue,
         ),
       ],
     );
@@ -88,7 +88,7 @@ class _EditRouteSheetCoordinateState extends State<EditRouteSheetCoordinate> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Coordinates", style: TextStyles.bottomSheetTitle(),),
+          Text('Coordinates', style: bottomSheetTitle(),),
           SizedBox(height: 16.0,),
           Row(
             children: [
@@ -119,7 +119,7 @@ class _EditRouteSheetCoordinateState extends State<EditRouteSheetCoordinate> {
                 onPressed: () {
 
                 },
-                icon: SvgPicture.asset("assets/images/ic_sort_change.svg"),
+                icon: SvgPicture.asset('assets/images/ic_sort_change.svg'),
                 iconSize: 24,
               )
             ],
@@ -133,7 +133,7 @@ class _EditRouteSheetCoordinateState extends State<EditRouteSheetCoordinate> {
               child: RaisedButton(
                 onPressed: () {
                   setState(() {
-                    testData.add("");
+                    testData.add('');
                   });
                 },
                 padding: EdgeInsets.all(6.0),
@@ -141,7 +141,7 @@ class _EditRouteSheetCoordinateState extends State<EditRouteSheetCoordinate> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
                 ),
-                child: Icon(Icons.add, color: mainBlue,),
+                child: Icon(Icons.add, color: mainColorBlue,),
               ),
             ),
           ),
@@ -160,7 +160,7 @@ class _EditRouteSheetCoordinateState extends State<EditRouteSheetCoordinate> {
                   activeColor: Color(0xFF2DD429),
                 ),
               ),
-              Text("Show route on the map", style: TextStyles.bottomSheetItemLabel12(),)
+              Text('Show route on the map', style: bottomSheetItemLabel12(),)
             ],
           )
         ],

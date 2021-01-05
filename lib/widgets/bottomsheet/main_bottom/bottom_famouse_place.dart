@@ -1,13 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:point_of_interest_repository/point_of_interest_repository.dart';
-
-import '../../text_styles.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 
 class BottomFamousePlace extends StatefulWidget {
-  final PointOfInterest habur;
-
-  const BottomFamousePlace({Key key, @required this.habur}) : super(key: key);
   @override
   _BottomFamousePlaceState createState() => _BottomFamousePlaceState();
 }
@@ -22,7 +17,7 @@ class _BottomFamousePlaceState extends State<BottomFamousePlace> {
           Image(image: AssetImage(image),),
           SizedBox(width: 4.0,),
           Text(name,
-            style: TextStyles.bottomSheetItemLabel12(),
+            style: bottomSheetItemLabel12(),
           )
         ],
       ),
@@ -40,14 +35,14 @@ class _BottomFamousePlaceState extends State<BottomFamousePlace> {
             children: [
               Column(
                 children: [
-                  Text('13', style: TextStyles.bottomSheetItemLabel(),),
-                  Text("Visitor berth", style: TextStyles.bottomSheetItemLabelLigtGrey12(),)
+                  Text('13', style: bottomSheetItemLabel(),),
+                  Text('Visitor berth', style: bottomSheetItemLabelLigtGrey12(),)
                 ],
               ),
               Column(
                 children: [
-                  Text('40', style: TextStyles.bottomSheetItemLabel(),),
-                  Text("Depth", style: TextStyles.bottomSheetItemLabelLigtGrey12(),)
+                  Text('40', style: bottomSheetItemLabel(),),
+                  Text('Depth', style: bottomSheetItemLabelLigtGrey12(),)
                 ],
               )
             ],
@@ -61,12 +56,12 @@ class _BottomFamousePlaceState extends State<BottomFamousePlace> {
             spacing: 24,
             runSpacing: 16,
             children: [
-              _famousePlaceItem("assets/images/ic_hotel.png", "Hotels"),
-              _famousePlaceItem("assets/images/ic_shop.png", "Shops"),
-              _famousePlaceItem("assets/images/ic_repair.png", "Repairs"),
-              _famousePlaceItem("assets/images/ic_hotel.png", "Hotels & Bars"),
-              _famousePlaceItem("assets/images/ic_drink.png", "Restauranss & Bars"),
-              _famousePlaceItem("assets/images/ic_hotel.png", "Hotels"),
+              _famousePlaceItem('assets/images/ic_hotel.png', 'Hotels'),
+              _famousePlaceItem('assets/images/ic_shop.png', 'Shops'),
+              _famousePlaceItem('assets/images/ic_repair.png', 'Repairs'),
+              _famousePlaceItem('assets/images/ic_hotel.png', 'Hotels & Bars'),
+              _famousePlaceItem('assets/images/ic_drink.png', 'Restauranss & Bars'),
+              _famousePlaceItem('assets/images/ic_hotel.png', 'Hotels'),
             ],
           ),
         ),

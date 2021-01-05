@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 import 'package:hybrid_sailmate/widgets/global_widget.dart';
-import 'package:hybrid_sailmate/widgets/text_styles.dart';
 
 class SavedRouteSheetNote extends StatefulWidget {
   @override
@@ -21,7 +21,7 @@ class _SavedRouteSheetNoteState extends State<SavedRouteSheetNote> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Add note", style: TextStyles.bottomSheetTitle(),),
+              Text('Add note', style: bottomSheetTitle(),),
               Spacer(),
               GestureDetector(
                   onTap: () {
@@ -29,7 +29,7 @@ class _SavedRouteSheetNoteState extends State<SavedRouteSheetNote> {
                       isAddNote = false;
                     });
                   },
-                  child: Text("save", style: TextStyles.underlineBtn14(),)
+                  child: Text('save', style: underlineBtn14(),)
               ),
               SizedBox(width: 24,),
               InkWell(
@@ -45,7 +45,7 @@ class _SavedRouteSheetNoteState extends State<SavedRouteSheetNote> {
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(12.0))
                   ),
-                  child: Icon(Icons.close, size: 12,color: mainBlue,)
+                  child: Icon(Icons.close, size: 12,color: mainColorBlue,)
                 ),
               )
             ],
@@ -63,15 +63,15 @@ class _SavedRouteSheetNoteState extends State<SavedRouteSheetNote> {
                 hintText: 'Enter your note',
                 border: InputBorder.none
               ),
-              style: TextStyles.bottomSheetItemLabel12(),
+              style: bottomSheetItemLabel12(),
             ),
           ),
           SizedBox(height: 16.0,),
           Row(
             children: [
-              SvgPicture.asset("assets/images/ic_camera.svg"),
+              SvgPicture.asset('assets/images/ic_camera.svg'),
               SizedBox(width: 4.0,),
-              Text("Uplaod photo", style: TextStyles.buttonBlue(),)
+              Text('Uplaod photo', style: buttonBlue(),)
             ],
           )
         ],
@@ -86,7 +86,7 @@ class _SavedRouteSheetNoteState extends State<SavedRouteSheetNote> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Your note: ", style: TextStyles.bottomSheetTitle(),),
+            Text('Your note: ', style: bottomSheetTitle(),),
             Visibility(
               visible: !isAddNote,
               child: GestureDetector(
@@ -95,7 +95,7 @@ class _SavedRouteSheetNoteState extends State<SavedRouteSheetNote> {
                     isAddNote = true;
                   });
                 },
-                child: Text("+ Add note", style: TextStyles.underlineBtn14(),)
+                child: Text('+ Add note', style: underlineBtn14(),)
               ),
             )
           ],
@@ -121,14 +121,14 @@ class _SavedRouteSheetNoteState extends State<SavedRouteSheetNote> {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Apr 13, 2020', style: TextStyles.bottomSheetItemLabelLigtGrey12(),),
+            Text('Apr 13, 2020', style: bottomSheetItemLabelLigtGrey12(),),
             SizedBox(width: 8.0,),
-            Expanded(child: Text("Somenote amet minim. Mollit non deserunt ullamco, ateest dolor do amet sint.", style: TextStyles.bottomSheetItemLabelGrey12(), maxLines: null,))
+            Expanded(child: Text('Somenote amet minim. Mollit non deserunt ullamco, ateest dolor do amet sint.', style: bottomSheetItemLabelGrey12(), maxLines: null,))
           ],
         ),
         SizedBox(height: 16.0,),
         ClipRRect(
-            child: Image.asset("assets/images/img_sample_1.png", width: double.infinity, height: 160.0, fit: BoxFit.fill,)
+            child: Image.asset('assets/images/img_sample_1.png', width: double.infinity, height: 160.0, fit: BoxFit.fill,)
         ),
         SizedBox(height: 12.0,),
       ],

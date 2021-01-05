@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 import 'package:hybrid_sailmate/widgets/global_widget.dart';
-import 'package:hybrid_sailmate/widgets/text_styles.dart';
 
 class SavedRouteSheetAbout extends StatefulWidget {
   @override
@@ -8,12 +8,6 @@ class SavedRouteSheetAbout extends StatefulWidget {
 }
 
 class _SavedRouteSheetAboutState extends State<SavedRouteSheetAbout> {
-
-  List<String> testData = [
-    "60 °28.0 ′N, 60 °28.0 ′E",
-    "60 °28.0 ′N, 60 °28.0 ′E",
-    "60 °28.0 ′N, 60 °28.0 ′E",
-  ];
 
   Widget _bindLocationItem(String str) {
     return Column(
@@ -30,7 +24,7 @@ class _SavedRouteSheetAboutState extends State<SavedRouteSheetAbout> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(str, style: TextStyles.bottomSheetItemLabel()),
+              Text(str, style: bottomSheetItemLabel()),
             ],
           ),
         ),
@@ -47,10 +41,10 @@ class _SavedRouteSheetAboutState extends State<SavedRouteSheetAbout> {
             width: 9,
             height: 9,
             decoration: BoxDecoration(
-              color: index == (testData.length - 1) * 2 ? mainBlue : Colors.transparent,
+              color: index == (testData.length - 1) * 2 ? mainColorBlue : Colors.transparent,
               borderRadius: BorderRadius.circular(4.5),
               border: Border.all(
-                  color: mainBlue
+                  color: mainColorBlue
               ),
             ),
           ),
@@ -61,7 +55,7 @@ class _SavedRouteSheetAboutState extends State<SavedRouteSheetAbout> {
         Container(
           width: 1,
           height: 53,
-          color: mainBlue,
+          color: mainColorBlue,
         ),
       ],
     );
@@ -74,7 +68,7 @@ class _SavedRouteSheetAboutState extends State<SavedRouteSheetAbout> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("About route", style: TextStyles.bottomSheetTitle(),),
+          Text('About route', style: bottomSheetTitle(),),
           SizedBox(height: 8.0,),
           Container(
             height: 76.0,
@@ -95,8 +89,8 @@ class _SavedRouteSheetAboutState extends State<SavedRouteSheetAbout> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Spacer(),
-                        Text("3", style: TextStyles.bottomSheetItemLabel(),),
-                        Text("ways", style: TextStyles.bottomSheetItemLabelLigtGrey12()),
+                        Text('3', style: bottomSheetItemLabel(),),
+                        Text('ways', style: bottomSheetItemLabelLigtGrey12()),
                         Spacer(),
                       ],
                     ),
@@ -118,8 +112,8 @@ class _SavedRouteSheetAboutState extends State<SavedRouteSheetAbout> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Spacer(),
-                        Text("57 hours", style: TextStyles.bottomSheetItemLabel(),),
-                        Text("duration", style: TextStyles.bottomSheetItemLabelLigtGrey12()),
+                        Text('57 hours', style: bottomSheetItemLabel(),),
+                        Text('duration', style: bottomSheetItemLabelLigtGrey12()),
                         Spacer(),
                       ],
                     ),

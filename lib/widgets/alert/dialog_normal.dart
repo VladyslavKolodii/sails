@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 
-import '../text_styles.dart';
 
 class DialogNormal extends StatelessWidget {
 
@@ -38,9 +38,9 @@ class DialogNormal extends StatelessWidget {
               margin: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 24.0),
               child: Column(
                 children: [
-                  Text(title, style: TextStyles.bottomSheetTitle(),textAlign: TextAlign.center,),
+                  Text(title, style: bottomSheetTitle(),textAlign: TextAlign.center,),
                   SizedBox(height: 8.0,),
-                  Text(content, style: TextStyles.bottomSheetItemLabelGrey12(), textAlign: TextAlign.center,),
+                  Text(content, style: bottomSheetItemLabelGrey12(), textAlign: TextAlign.center,),
                   SizedBox(height: 16.0,),
                   Container(
                     height: 46.0,
@@ -52,26 +52,26 @@ class DialogNormal extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0),
                               side: BorderSide(
-                                color: mainBlue,
+                                color: mainColorBlue,
                                 width: 1.0
                               )
                             ),
                             height: 46.0,
                             onPressed: noAction,
-                            child: Text(noStr, style: TextStyles.buttonBlue(),),
+                            child: Text(noStr, style: buttonBlue(),),
                           ),
                         ),
                         SizedBox(width: 24.0,),
                         Expanded(
                           flex: 1,
                           child: FlatButton(
-                            color: mainBlue,
+                            color: mainColorBlue,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0),
                             ),
                             height: 46.0,
                             onPressed: okAction,
-                            child: Text(okStr, style: TextStyles.buttonWhite()),
+                            child: Text(okStr, style: buttonWhite()),
                           ),
                         )
                       ],

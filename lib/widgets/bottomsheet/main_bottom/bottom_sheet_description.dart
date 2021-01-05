@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hybrid_sailmate/widgets/text_styles.dart';
-import 'package:point_of_interest_repository/point_of_interest_repository.dart';
+import 'package:hybrid_sailmate/utils/const_util.dart';
 
 class BottomSheetDescription extends StatelessWidget {
-  final PointOfInterest habur;
-
-  const BottomSheetDescription({Key key, @required this.habur}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,9 +9,9 @@ class BottomSheetDescription extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Description", style: TextStyles.bottomSheetTitle(),),
+          Text('Description', style: bottomSheetTitle(),),
           SizedBox(height: 4.0,),
-          Text("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis", style: TextStyles.bottomSheetItemLabelGrey12(),),
+          Text('Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis', style: bottomSheetItemLabelGrey12(),),
         ],
       ),
     );
