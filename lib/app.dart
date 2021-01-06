@@ -2,18 +2,16 @@ import 'dart:ui';
 
 import 'package:amplify_core/amplify_core.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:hybrid_sailmate/menu/main_drawer.dart';
+import 'package:hybrid_sailmate/screens/auth/bloc/auth_bloc.dart';
+import 'package:hybrid_sailmate/screens/map/view/map_page.dart';
+import 'package:hybrid_sailmate/screens/splash/view/splash_page.dart';
 import 'amplifyconfiguration.dart';
-
-import 'package:hybrid_sailmate/auth/bloc/auth_bloc.dart';
-import 'package:hybrid_sailmate/auth/view/login_page.dart';
 import 'package:hybrid_sailmate/config/config.dart';
-import 'package:hybrid_sailmate/map/map.dart';
-import 'package:hybrid_sailmate/splash/splash.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:config_repository/config_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hybrid_sailmate/widgets/drawer/main_drawer.dart';
 
 
 class PageRouteWithoutTransition extends MaterialPageRoute {

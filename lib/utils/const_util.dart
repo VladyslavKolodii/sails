@@ -6,6 +6,7 @@ import 'package:hybrid_sailmate/model/model_route.dart';
 import 'package:hybrid_sailmate/model/model_route_latlng.dart';
 import 'package:hybrid_sailmate/model/model_saved_places.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 final List<OnBoardingModel> onBoradingArr = [
   OnBoardingModel('Onborading.Onborading1.title'.tr(), 'Onborading.Onborading1.detail'.tr(), 'assets/images/onboarding1.png'),
@@ -75,6 +76,7 @@ final Color mainColorLightGray = Color(0xFF9C9C9C);
 final Color mainColorInput = Color(0xFFF2F5F9);
 final Color mainColorDisabled = Color(0xFFBFC6D1);
 final Color mainColorPremium = Color(0xFFFF8A00);
+final Color barrierColor = Color(0xffD6DFF0);
 
 TextStyle bottomSheetItemLabel() => GoogleFonts.lato(fontSize: 14, fontWeight: FontWeight.w600, height: 1.5);
 TextStyle bottomSheetItemLabelGrey12() => GoogleFonts.lato(fontSize: 12, fontWeight: FontWeight.w400, height: 1.5, color: Colors.grey);
@@ -91,3 +93,26 @@ TextStyle termslogo() => GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w
 TextStyle blackLabel14() => GoogleFonts.lato(fontSize: 14, fontWeight: FontWeight.w600);
 TextStyle underlineBtn14() => GoogleFonts.lato(fontSize: 14, fontWeight: FontWeight.w600, color: mainColorBlue, decoration: TextDecoration.underline);
 TextStyle bottomSheetItemInputLigtGrey12() => GoogleFonts.lato(fontSize: 12,color: Colors.grey[400]);
+
+BoxDecoration MainBoxDecoration(Color borderColor) => BoxDecoration(
+  borderRadius: BorderRadius.all(Radius.circular(5)),
+  boxShadow: [BoxShadow(spreadRadius: 0.1, color: borderColor, blurRadius: 1)],
+  color: Colors.white
+);
+
+BoxDecoration MainButtonDecoration() => BoxDecoration(
+    borderRadius: BorderRadius.all(Radius.circular(5)),
+    boxShadow: [BoxShadow(spreadRadius: 0.1, color: Colors.grey, blurRadius: 1)],
+    color: Colors.white
+);
+
+BoxDecoration MainGradientDecoration() => BoxDecoration(
+    gradient: LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      stops: [0.0, 0.4, 0.95],
+      colors: [barrierColor, Colors.white.withOpacity(0.9), Colors.white],
+    )
+);
+
+final latlngMask = new MaskTextInputFormatter(mask: 'N: ##°##.#′, E: ##°##.#′', filter: {"#": RegExp(r'[0-9]')});

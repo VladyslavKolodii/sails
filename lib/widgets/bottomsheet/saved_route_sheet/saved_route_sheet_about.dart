@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hybrid_sailmate/utils/const_util.dart';
-import 'package:hybrid_sailmate/widgets/global_widget.dart';
+import 'package:hybrid_sailmate/widgets/custom_textfields.dart';
+import 'package:hybrid_sailmate/widgets/route_info_widget.dart';
 
 class SavedRouteSheetAbout extends StatefulWidget {
   @override
@@ -15,18 +16,9 @@ class _SavedRouteSheetAboutState extends State<SavedRouteSheetAbout> {
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(height: 8.0,),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
-          width: double.infinity,
-          height: 46,
-          decoration: GlobalWidget.MainBoxDecoration(Colors.white),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(str, style: bottomSheetItemLabel()),
-            ],
-          ),
+        CustomMaskTextField(
+          height: 48.0,
+          strVal: str,
         ),
         SizedBox(height: 8.0,),
       ],
@@ -54,7 +46,7 @@ class _SavedRouteSheetAboutState extends State<SavedRouteSheetAbout> {
       children: [
         Container(
           width: 1,
-          height: 53,
+          height: 55,
           color: mainColorBlue,
         ),
       ],
@@ -70,57 +62,12 @@ class _SavedRouteSheetAboutState extends State<SavedRouteSheetAbout> {
         children: [
           Text('About route', style: bottomSheetTitle(),),
           SizedBox(height: 8.0,),
-          Container(
-            height: 76.0,
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: FlatButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    height: 76.0,
-                    color: Color(0xFFE5ECFB),
-                    onPressed: (){
-
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Spacer(),
-                        Text('3', style: bottomSheetItemLabel(),),
-                        Text('ways', style: bottomSheetItemLabelLigtGrey12()),
-                        Spacer(),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(width: 24.0,),
-                Expanded(
-                  flex: 1,
-                  child: FlatButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0)
-                    ),
-                    color: Color(0xFFE5ECFB),
-                    height: 76.0,
-                    onPressed: () {
-
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Spacer(),
-                        Text('57 hours', style: bottomSheetItemLabel(),),
-                        Text('duration', style: bottomSheetItemLabelLigtGrey12()),
-                        Spacer(),
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
+          RouteInfo(
+            bgColor: mainColorLightBlue,
+            title1: '3',
+            subtitle1: 'ways',
+            title2: '57 hours',
+            subtitle2: 'duration',
           ),
           SizedBox(height: 8.0,),
           Row(

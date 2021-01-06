@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hybrid_sailmate/utils/const_util.dart';
-import 'package:hybrid_sailmate/widgets/button/icon_button.dart';
+import 'package:hybrid_sailmate/widgets/custom_buttons.dart';
 import 'package:point_of_interest_repository/point_of_interest_repository.dart';
 
 class BottomSheetHeader extends StatelessWidget {
@@ -51,9 +51,25 @@ class BottomSheetHeader extends StatelessWidget {
                         ),
                         Text('9 Km from you', style: bottomSheetItemLabelLigtGrey12(),),
                         SizedBox(height: 16.0,),
-                        CustomIconButton(txt: 'Route to', icon: Icons.watch_later_outlined, txtColor: Colors.white, iconColor: Colors.white, paddingHorizontal: 31.5, backgroundColor: mainColorBlue, radius: 8.0, paddingVertical: 10.0, didTap: onTapRoute,),
+                        CustomFullRaisedButton(
+                          bgColor: mainColorBlue,
+                          strColor: Colors.white,
+                          btnText: 'Route to',
+                          icon: Icons.watch_later_outlined,
+                          onPressed: () {
+
+                          },
+                        ),
                         SizedBox(height: 8.0,),
-                        CustomIconButton(txt: 'Save place', icon: Icons.favorite_border, txtColor: Colors.white, iconColor: Colors.white, paddingHorizontal: 31.5, backgroundColor: mainColorBlue, radius: 8.0, paddingVertical: 10.0, didTap: onTapSave,),
+                        CustomFullRaisedButton(
+                          bgColor: mainColorBlue,
+                          strColor: Colors.white,
+                          btnText: 'Save place',
+                          icon: Icons.favorite_border_outlined,
+                          onPressed: () {
+
+                          },
+                        ),
                       ],
                     ),
                   ),

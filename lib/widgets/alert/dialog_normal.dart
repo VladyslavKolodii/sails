@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hybrid_sailmate/main.dart';
 import 'package:hybrid_sailmate/utils/const_util.dart';
+import 'package:hybrid_sailmate/widgets/custom_buttons.dart';
 
 
 class DialogNormal extends StatelessWidget {
@@ -46,33 +48,17 @@ class DialogNormal extends StatelessWidget {
                     height: 46.0,
                     child: Row(
                       children: [
-                        Expanded(
-                          flex: 1,
-                          child: FlatButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              side: BorderSide(
-                                color: mainColorBlue,
-                                width: 1.0
-                              )
-                            ),
-                            height: 46.0,
-                            onPressed: noAction,
-                            child: Text(noStr, style: buttonBlue(),),
-                          ),
+                        CustomFullFlatBtn(
+                          borderColor: mainColorBlue,
+                          btnTitle: noStr,
+                          onPressed: noAction,
                         ),
                         SizedBox(width: 24.0,),
-                        Expanded(
-                          flex: 1,
-                          child: FlatButton(
-                            color: mainColorBlue,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            height: 46.0,
-                            onPressed: okAction,
-                            child: Text(okStr, style: buttonWhite()),
-                          ),
+                        CustomFullFlatBtn(
+                          bgColor: mainColorBlue,
+                          strColor: Colors.white,
+                          btnTitle: okStr,
+                          onPressed: okAction,
                         )
                       ],
                     ),

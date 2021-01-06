@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hybrid_sailmate/utils/const_util.dart';
-import 'package:hybrid_sailmate/widgets/bottomsheet/edit_route_sheet/edit_route_sheet_coordinate.dart';
-import 'package:hybrid_sailmate/widgets/common/main_button_decoration.dart';
-import 'package:hybrid_sailmate/widgets/global_widget.dart';
+import 'package:hybrid_sailmate/widgets/bottomsheet/edit_sheet_coordinate.dart';
+import 'package:hybrid_sailmate/widgets/custom_appbar.dart';
+import 'package:hybrid_sailmate/widgets/custom_buttons.dart';
 
 class AddPlaceManual extends StatefulWidget {
   @override
@@ -38,7 +38,7 @@ class _AddPlaceManualState extends State<AddPlaceManual> {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             height: 97,
-            decoration: GlobalWidget.MainBoxDecoration(Colors.white),
+            decoration: MainBoxDecoration(Colors.white),
             child: TextField(
               keyboardType: TextInputType.multiline,
               maxLines: null,
@@ -64,37 +64,10 @@ class _AddPlaceManualState extends State<AddPlaceManual> {
       key: _scalffoldkey,
       body: Container(
         padding: EdgeInsets.only(top: height < 670 ? 25 : 58),
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              stops: [0.0, 0.4, 0.95],
-              colors: [Color(0xFFD6DFF0), Colors.white.withOpacity(0.9), Colors.white],
-            )
-        ),
+        decoration: MainGradientDecoration(),
         child: Column(
           children: [
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 24.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                      height: 46.0,
-                      width: 46.0,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        ),
-                        child: BackButton(),
-                      )
-                  ),
-                  Expanded(child: Center(child: Text('Add place', style: bottomSheetTitle()))),
-                  SizedBox(width: 46),
-                ],
-              ),
-            ),
+            CustomAppBar(strTitle: 'Add place',),
             SizedBox(height: 24.0,),
             Container(
               height: 46.0,
@@ -144,35 +117,31 @@ class _AddPlaceManualState extends State<AddPlaceManual> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0)),
-                      color: Color(0xFFF2F5F9)
+                      color: mainColorInput
                     ),
                     child: Column(
                       children: [
-                        SizedBox(height: 24,),
-                        EditRouteSheetCoordinate(),
+                        SizedBox(height: 24.0,),
+                        EditSheetCoordinate(),
                         Container(
-                          margin: EdgeInsets.all(24.0),
+                          margin: EdgeInsets.fromLTRB(24.0, 24.0, 0.0, 0.0),
                           child: _bindAddNote()
                         ),
-                        SizedBox(height: 32.0,),
+                        SizedBox(height: 16.0,),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 24.0),
-                          child: FlatButton(
-                            height: 46.0,
-                            onPressed: () {
+                          child: Row(
+                            children: [
+                              CustomFullFlatBtn(
+                                bgColor: mainColorBlue,
+                                strColor: Colors.white,
+                                btnTitle: 'Save',
+                                onPressed: () {
 
-                            },
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                            ),
-                            color: mainColorBlue,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('Save', style: buttonWhite(),)
-                              ],
-                            ),
-                          ),
+                                },
+                              ),
+                            ],
+                          )
                         ),
                         Container(
                           color: Colors.transparent,

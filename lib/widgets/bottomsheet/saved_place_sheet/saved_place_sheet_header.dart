@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:hybrid_sailmate/model/model_saved_places.dart';
 import 'package:hybrid_sailmate/utils/const_util.dart';
 import 'package:hybrid_sailmate/widgets/alert/dialog_normal.dart';
+import 'package:hybrid_sailmate/widgets/custom_buttons.dart';
 
 class SavedPlaceSheetHeader extends StatelessWidget {
 
@@ -62,74 +63,48 @@ class SavedPlaceSheetHeader extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 16.0,),
-              FlatButton(
-                height: 46.0,
-                onPressed: onTapRoute,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0)
-                ),
-                color: mainColorBlue,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.watch_later_outlined, size: 16.0, color: Colors.white,),
-                    SizedBox(width: 4.0,),
-                    Text('Route to', style: bottomSheetItemLabel12().copyWith(color: Colors.white),)
-                  ],
-                ),
+              CustomFullRaisedButton(
+                bgColor: mainColorBlue,
+                strColor: Colors.white,
+                btnText: 'Route to',
+                icon: Icons.watch_later_outlined,
+                onPressed: () {
+
+                },
               ),
               SizedBox(height: 16.0,),
               Row(
                 children: [
-                  Expanded(
-                    flex: 1,
-                    child: FlatButton(
-                      onPressed: onTapEdit,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          side: BorderSide(
-                              color: mainColorBlue,
-                              width: 1.0
-                          )
-                      ),
-                      height: 46.0,
-                      child: Text('Edit', style: buttonBlue(),),
-                    ),
+                  CustomFullFlatBtn(
+                    onPressed: onTapEdit,
+                    borderColor: mainColorBlue,
+                    btnTitle: 'Edit',
                   ),
                   SizedBox(width: 24.0,),
-                  Expanded(
-                    flex: 1,
-                    child: FlatButton(
-                      onPressed: () async {
-                        var dismiss = await showDialog<bool>(context: context,
-                            builder: (context) {
-                              return DialogNormal(
-                                title: 'Are you sure that you want delete this saved place?',
-                                content: 'The explanation that your data will be deleted. Lorem ipsum dolor.',
-                                okStr: 'Delete',
-                                noStr: 'Cancel',
-                                okAction: () {
-                                  Navigator.of(context).pop(true);
-                                  print('ok tapped 123456789');
-                                },
-                                noAction: () {
-                                  Navigator.of(context).pop(false);
-                                  print('no tapped 123456789');
-                                },
-                              );
-                            });
-                      },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          side: BorderSide(
-                              color: mainColorBlue,
-                              width: 1.0
-                          )
-                      ),
-                      height: 46.0,
-                      child: Text('Delete', style: buttonBlue(),),
-                    ),
-                  )
+                  CustomFullFlatBtn(
+                    onPressed: () async {
+                      await showDialog<bool>(context: context,
+                          builder: (context) {
+                            return DialogNormal(
+                              title: 'Are you sure that you want delete this saved place?',
+                              content: 'The explanation that your data will be deleted. Lorem ipsum dolor.',
+                              okStr: 'Delete',
+                              noStr: 'Cancel',
+                              okAction: () {
+                                Navigator.of(context).pop(true);
+                                print('ok tapped 123456789');
+                              },
+                              noAction: () {
+                                Navigator.of(context).pop(false);
+                                print('no tapped 123456789');
+                              },
+                            );
+                          }
+                        );
+                    },
+                    borderColor: mainColorBlue,
+                    btnTitle: 'Delete',
+                  ),
                 ],
               )
             ],

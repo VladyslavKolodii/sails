@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hybrid_sailmate/utils/const_util.dart';
-import 'package:hybrid_sailmate/widgets/common/main_button_decoration.dart';
 
 class SpeedAndHeadingInfoBox extends HookWidget {
   const SpeedAndHeadingInfoBox({ this.top }) : super();
