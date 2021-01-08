@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hybrid_sailmate/utils/const_util.dart';
+import 'package:hybrid_sailmate/widgets/route_info_item_widget.dart';
 
 class RouteInfo extends StatelessWidget {
 
@@ -18,39 +19,9 @@ class RouteInfo extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(
-            flex: 1,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(16.0)),
-                color: bgColor
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(title1, style: bottomSheetItemLabel(),),
-                  Text(subtitle1, style: bottomSheetItemLabelLigtGrey12(),)
-                ],
-              ),
-            ),
-          ),
+          RouteInfoItem(bgColor: bgColor, title: title1, subtitle: subtitle1,),
           SizedBox(width: 16.0,),
-          Expanded(
-            flex: 1,
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(16.0)),
-                  color: bgColor
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(title2, style: bottomSheetItemLabel(),),
-                  Text(subtitle2, style: bottomSheetItemLabelLigtGrey12(),)
-                ],
-              ),
-            ),
-          )
+          RouteInfoItem(bgColor: bgColor, title: title2, subtitle: subtitle2,),
         ],
       ),
     );

@@ -6,6 +6,8 @@ import 'package:hybrid_sailmate/menu/main_drawer_list_tile.dart';
 import 'package:hybrid_sailmate/screens/auth/bloc/auth_bloc.dart';
 import 'package:hybrid_sailmate/screens/draw_screens/help_center.dart';
 import 'package:hybrid_sailmate/screens/draw_screens/language_selector.dart';
+import 'package:hybrid_sailmate/screens/draw_screens/saved_track.dart';
+import 'package:hybrid_sailmate/screens/draw_screens/subscription.dart';
 import 'package:hybrid_sailmate/utils/const_util.dart';
 import 'package:hybrid_sailmate/widgets/custom_appbar.dart';
 import 'package:hybrid_sailmate/screens/draw_screens/profile.dart';
@@ -65,7 +67,10 @@ class MainDrawer extends StatelessWidget {
                 height: 60,
                 child: MainDrawerListTile(label: 'drawer.tracksTitle'.tr(), icon: Istos.history, onTap: () {
                   Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'drawer.tracksTitle', content: [Row()]);
+                  Navigator.of(context).push(PageRouteBuilder(
+                    opaque: false,
+                    pageBuilder: (_, __, ___,) => SavedTracks(title: 'drawer.tracksTitle'.tr()),
+                  ),);
                 }),
               ),
               Container(
@@ -97,7 +102,10 @@ class MainDrawer extends StatelessWidget {
                 height: 60,
                 child: MainDrawerListTile(label: 'drawer.subscriptionsTitle'.tr(), icon: Istos.wallet, onTap: () {
                   Navigator.of(context).pop();
-                  _modalBottomSheet(context, 'drawer.subscriptionsTitle', content: [Row()]);
+                  Navigator.of(context).push(PageRouteBuilder(
+                    opaque: false,
+                    pageBuilder: (_, __, ___,) => SubScription(title: 'drawer.subscriptionsTitle'.tr()),
+                  ),);
                 }),
               ),
               Divider(),

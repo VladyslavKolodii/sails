@@ -5,6 +5,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:hybrid_sailmate/model/model_route.dart';
 import 'package:hybrid_sailmate/model/model_route_latlng.dart';
 import 'package:hybrid_sailmate/model/model_saved_places.dart';
+import 'package:hybrid_sailmate/model/model_saved_tracks.dart';
+import 'package:hybrid_sailmate/model/model_subscription.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -35,6 +37,27 @@ final List<ModelRoute> testRoutes = [
   ModelRoute(17, 'Title of route', 12, 'Oct 13, 2020', 'Apr 14, 2020', false),
 ];
 
+final List<ModelSavedTracks> testTracks = [
+  ModelSavedTracks(0, 'Scout port 12 34 567 89 123456', 6, 'Oct 13, 2020', '57h 44m'),
+  ModelSavedTracks(1, 'Second title of Route', 12, 'Oct 13, 2020', '57h 44m'),
+  ModelSavedTracks(2, 'Title of route', 12, 'Oct 13, 2020', '57h 44m'),
+  ModelSavedTracks(3, 'Title of route', 12, 'Oct 13, 2020', '57h 44m'),
+  ModelSavedTracks(4, 'Second title of Route', 12, 'Oct 13, 2020', '57h 44m'),
+  ModelSavedTracks(5, 'Title of route', 12, 'Oct 13, 2020', '57h 44m'),
+  ModelSavedTracks(6, 'Title of route', 12, 'Oct 13, 2020', '57h 44m'),
+  ModelSavedTracks(7, 'Title of route', 12, 'Oct 13, 2020', '57h 44m'),
+  ModelSavedTracks(8, 'Second title of Route', 12, 'Oct 13, 2020', '57h 44m'),
+  ModelSavedTracks(9, 'Title of route', 12, 'Oct 13, 2020', '57h 44m'),
+  ModelSavedTracks(10, 'Title of route', 12, 'Oct 13, 2020', '57h 44m'),
+  ModelSavedTracks(11, 'Title of route', 12, 'Oct 13, 2020', '57h 44m'),
+  ModelSavedTracks(12, 'Second title of Route', 12, 'Oct 13, 2020', '57h 44m'),
+  ModelSavedTracks(13, 'Title of route', 12, 'Oct 13, 2020', '57h 44m'),
+  ModelSavedTracks(14, 'Title of route', 12, 'Oct 13, 2020', '57h 44m'),
+  ModelSavedTracks(15, 'Title of route', 12, 'Oct 13, 2020', '57h 44m'),
+  ModelSavedTracks(16, 'Second title of Route', 12, 'Oct 13, 2020', '57h 44m'),
+  ModelSavedTracks(17, 'Title of route', 12, 'Oct 13, 2020', '57h 44m'),
+];
+
 final List<ModelSavedPlaces> testPlaces = [
   ModelSavedPlaces(0, 'Point of interest', 'Harbour', 'Oct 13, 2020', 6, LatLng(60.20, 22.0), 'assets/images/img_sample.png'),
   ModelSavedPlaces(1, 'Point of interest', 'Scout port', 'Oct 14, 2020', 8, LatLng(60.25, 22.5), 'assets/images/img_sample.png'),
@@ -49,6 +72,23 @@ final List<ModelSavedPlaces> testPlaces = [
 final List<ModelRouteCoordinate> testRouteCoordinates = [
   ModelRouteCoordinate([LatLng(60.20, 22.0), LatLng(60.65, 22.3), LatLng(60.75, 21.5)]),
   ModelRouteCoordinate([LatLng(62.20, 23.0), LatLng(62.75, 22.5)]),
+];
+
+enum SubscriptionMode {
+  savedtrack,
+  scout,
+}
+
+enum SubscriptionStatus {
+  locked,
+  upgrade,
+  cancel
+}
+
+final List<ModelSubscription> testSubscriptions = [
+  ModelSubscription(SubscriptionMode.savedtrack, SubscriptionStatus.upgrade),
+  ModelSubscription(SubscriptionMode.scout, SubscriptionStatus.locked),
+  ModelSubscription(SubscriptionMode.savedtrack, SubscriptionStatus.cancel),
 ];
 
 final List<String> testData = [
