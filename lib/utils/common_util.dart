@@ -85,4 +85,44 @@ class Common {
     );
   }
 
+  static Widget prensentBottomSheet(BuildContext context, double height, Widget child) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      isDismissible: true,
+      barrierColor: barrierColor.withAlpha(200),
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        height: height,
+        decoration: BoxDecoration(
+          color: mainColorInput,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20.0),
+            topLeft: Radius.circular(20.0),
+          )
+        ),
+        child: Column(
+          children: [
+            SizedBox(height: 16.0,),
+            Row(
+              children: [
+                Spacer(),
+                Container(
+                  width: 92,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.all(Radius.circular(2.0)),
+                  ),
+                ),
+                Spacer()
+              ],
+            ),
+            child,
+          ],
+        ),
+      )
+    );
+  }
+
 }
